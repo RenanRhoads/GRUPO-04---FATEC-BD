@@ -14,22 +14,23 @@ df = df.loc[df['estado'] == 'SP']
 df = df.append(df.sum(numeric_only=True).rename('Total'))  # Deve ficar próximo do final da manipulação dos dados.
 df = df.fillna(value="")
 
-total_mortes = df['mortes'].loc[df['estado'] == 'SP'].sum()
+total_mortes = df['mortes'].loc[df['estado'] == 'SP'].sum()  # Calula o total de mortes do estado de SP
 
 print(total_mortes)
 
-cidade_a = str(input("Digite o nome da cidade:"))
+cidade_a = str(input("Digite o nome da cidade:"))  # Pega uma cidade, definida pelo usuario, e faz a soma das mortes da mesma.
 
-total_city = df['mortes'].loc[df['Cidade'] == cidade_a].sum()
+
+total_city = df['mortes'].loc[df['Cidade'] == cidade_a].sum()  # Calcula o total de mortes da cidade citada pelo usuário
 
 print(total_city)
 
 
 def MainWindow():
-    front = tk.Tk()
-    front.title = "Covid Tracker"
-    front.geometry('1060x450')
-    total = tk.Label(front, font=("Courier", 15), text="Total de Mortes: " + str(total_mortes))
+    front = tk.Tk()  # inicia a interface gráfica.
+    front.title = "Covid Tracker"  # Da um nome a janela.
+    front.geometry('1060x450')  # Define o tamanho da interface.
+    total = tk.Label(front, font=("Courier", 15), text="Total de Mortes: " + str(total_mortes))  # Cria uma caixa de texto
     total.pack()
     cidade = tk.Label(front, font=("Courier", 15), text="Mortes na cidade de " + cidade_a + ":" + str(total_city))
     cidade.pack()
