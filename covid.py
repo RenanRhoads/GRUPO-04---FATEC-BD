@@ -5,9 +5,10 @@ class tracker:
     file = pd.read_csv('caso_full.csv')  # Executa a leitura do arquivo.csv - "file" é apenas o nome que dei a variável.
 
     df = pd.DataFrame(data=file,
-                      columns=['city', 'state', 'new_deaths'])  # transforma o arquivo csv em um dataframe
+                      columns=['city', 'state', 'new_deaths',
+                               'last_available_deaths'])  # transforma o arquivo csv em um dataframe
     df = df.rename(
-        columns={"city": "Cidade", 'state': 'estado', 'new_deaths': 'mortes'})  # Seleciona as colunas que utilizaremos.
+        columns={"city": "Cidade", 'state': 'estado', 'new_deaths': 'mortes', 'last_available_deaths':'Mortes Confirmadas'})  # Seleciona as colunas que utilizaremos.
     df = df.loc[df['estado'] == 'SP']  # Filtra apenas o estado de SP na coluna 'estado'
     df = df.append(df.sum(numeric_only=True).rename('Total'))  # Adicina um linha 'total' no fim da tabela.
     df = df.fillna(value="")  # altera os valores de NaN para valor em branco.
@@ -18,14 +19,6 @@ class tracker:
 
     mortes_min = df['mortes'].loc[(df['estado'] == 'SP') & (df['mortes'] > 0)].min()
     mortes_max = df['mortes'].loc[df['estado'] == 'SP'].max()
-    """cidade = input("Digite o nome da cidade:")
-    total_city = df['mortes'].loc[df['Cidade'] == cidade].sum()"""
+    mortes_confirmadas = df['Mortes Confirmadas'].loc[df['estado'] == 'SP']
 
-
-def counter():
-    i = 0
-    j = len(tracker.lista_cidades)
-
-    while i < j:
-        print(tracker.lista_cidades[i])
-        i += 1
+    print(mortes_confirmadas)
