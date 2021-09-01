@@ -16,7 +16,7 @@ class main(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
-        """Variáveis"""
+        """Variáveis - globais"""
         self.hello = "Olá"
         self.items = tracker.lista_cidades  # definindo variáveis acima.
 
