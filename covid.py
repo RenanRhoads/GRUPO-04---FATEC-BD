@@ -6,11 +6,13 @@ class tracker:
 
     df = pd.DataFrame(data=file,
                       columns=['city', 'state', 'last_available_deaths', 'place_type',
-                               'new_deaths'])  # transforma o arquivo csv em um dataframe
+                               'new_deaths'])  # transforma o arquivo csv em um dataframe e seleciona as colunas
+    # necessárias
     df = df.rename(
         columns={"city": "cidade", 'state': 'estado',
                  'last_available_deaths': 'mortes confirmadas', 'place_type': 'tipo',
-                 'new_deaths': 'mortes'})  # Seleciona as colunas que utilizaremos.
+                 'new_deaths': 'mortes'})  # renomeia as colunas.
+
     df = df.loc[df['estado'] == 'SP'].loc[
         df['tipo'] == 'city']  # Filtra apenas o estado de SP na coluna 'estado', e apenas o cálculo por tipo "state"
 
@@ -18,7 +20,7 @@ class tracker:
 
     df = df.fillna(value="")  # altera os valores de NaN para valor em branco.
 
-    df = df.drop_duplicates()  # teste, excluir
+    df = df.drop_duplicates()  # retira valores duplicados.
 
     total_mortes = df['mortes'].loc[df['estado'] == 'SP'].sum()  # Soma somente as mortes do estado de SP
 

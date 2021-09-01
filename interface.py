@@ -1,9 +1,7 @@
-import PySide6.QtCharts
-import sys
 from covid import tracker
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtWidgets import *
-PySide6.QtCore.QRect
+
 
 class test(QtWidgets.QWidget):  # Uma classe para abrir uma janela após apertar um botão. Apenas testando.
     def __init__(self):
@@ -35,8 +33,6 @@ class main(QtWidgets.QWidget):
         self.layout.setAlignment(QtCore.Qt.AlignTop)
         self.layout.addWidget(self.lista, 0, 2)  # Adiciona o list
 
-        self.layout_lista = QtWidgets.QVBoxLayout(self)
-
         """Loop criado para inserir as citadel no display inicial"""
 
         self.i = 0
@@ -56,7 +52,16 @@ class main(QtWidgets.QWidget):
 
     def item_usuario(self):
         self.cidade = self.lista.currentText()
-        print(self.cidade)
+        self.valor_cidade = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[tracker.df['tipo'] == 'city'].sum()
+        self.mortes = QtWidgets.QLabel(text="Número total de mortes " + str(self.valor_cidade))
+        self.layout.addWidget(self.mortes, 2, 3)
+
+        if self.mortes != "":
+            pass
+        else:
+            self.mortes.clear()
+
+        print(self.valor_cidade)
 
     def magic(self):  # Função para abrir a janela quando apertar o botao.
         self.a = test()
@@ -64,7 +69,7 @@ class main(QtWidgets.QWidget):
 
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = QApplication()
 
     widget = main()
     widget.resize(1024, 720)
