@@ -28,18 +28,18 @@ O protótipo não poderá:
 
 📆 CRONOGRAMA
 
- KICK OFF - 16/08 a 22/08; ✔️
+   KICK OFF - 16/08 a 22/08; ✔️
 
- SPRINT 1 - 08/09 a 19/09; ✔️
+   SPRINT 1 - 08/09 a 19/09; ✔️
 
- SPRINT 2 - 20/09 a 10/10; 
+   SPRINT 2 - 20/09 a 10/10; 
 
- RECESSO- 11/10 a 17/10;
+   RECESSO- 11/10 a 17/10;
 
- SPRINT 3 - 18/10 a  07/11;
+   SPRINT 3 - 18/10 a  07/11;
 
- SPRINT 4 - 08/11 a 28/11;
+   SPRINT 4 - 08/11 a 28/11;
 
- Apresentação Final - 29/11 a 05/12;
+   Apresentação Final - 29/11 a 05/12;
 
- Feira de Soluções - 16/12;
+   Feira de Soluções - 16/12;
