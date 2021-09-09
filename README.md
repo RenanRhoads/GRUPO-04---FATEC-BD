@@ -25,6 +25,7 @@ O protótipo não poderá:
 ❌ Não utilizar sistema de Gerenciamento de banco de dado;
 
 
+
 📆 CRONOGRAMA
 
  KICK OFF - 16/08 a 22/08; ✔️
