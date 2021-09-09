@@ -8,13 +8,18 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
 
 O protótipo deverá:
 ✔️ Utilizar linguagem de programação Python;
+
 ✔️ Manipular e tratar dados preferencialmente OFF-LINE (CSV);
+
 ✔️ Apresentar o maior número possível de visões contextualizadas (Graficamente ou não);
+
 ✔️ Apresentar dados somente do estado de São Paulo;
 
 O protótipo não poderá:
 ❌ Utilizar 100% de APIs prontas e disponíveis no mercado;
+
 ❌ Utilizar relatórios disponíveis em sites governamentais ou não;
+
 ❌ Não utilizar sistema de Gerenciamento de banco de dado;
 
 -
