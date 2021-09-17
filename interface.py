@@ -14,74 +14,57 @@ from PySide6.QtWidgets import *
 # TODO: Novas variáveis para melhores visualizações de dados.
 # TODO: Utilizar Matplotlib e Seaborn para utilzar os gráficos.
 
-class valores(QtWidgets.QWidget):  # Uma classe para abrir uma janela após apertar um botão. Apenas testando.
-    def __init__(self):
-        super().__init__()
-
-
-class interface_principal(QtWidgets.QWidget):
+class InterfacePrincipal(QtWidgets.QWidget):
     cidade_selected: str
 
     def __init__(self):
         super().__init__()
 
-        self.update = QTimer()
-        self.update.setInterval(1000)
-        self.update.start()
-        # self.update.timeout.connect(self.UpdateGUI)
+        app.setStyleSheet(qdarkstyle.load_stylesheet(palette=DarkPalette))  # Define para o tema escuro.
 
-        """Variáveis - globais"""
         self.DarkModeStatus = 0
         self.hello = "Seja bem-vindo ao Covid Tracker!"
         self.items = tracker.lista_cidades  # definindo variáveis acima.
-
-        """Widgets Diversos"""
-        self.lista = QtWidgets.QComboBox()
+        self.select_texto = "Selecione sua cidade:"
 
         self.dark = QtWidgets.QPushButton("Modo Escuro")
 
-        self.texto = QtWidgets.QLabel(text=self.hello, alignment=QtCore.Qt.AlignCenter)
+        self.texto = QLabel(self.hello, self)
         self.texto.setStyleSheet("""
-            color: #090002;
+            color: #FFFFFF;
             font-family: Comic Sans MS;
             font-size: 18px;
             """)
-
-        self.caixaLista = QtWidgets.QFrame(self)
-        self.caixaLista.setGeometry(25, 50, 300, 120)
-        self.caixaLista.setStyleSheet("""
-            background-color: #03b1fc;
-            border-width: 1px;
-            """)
-
-        """Widgets para funções"""
-        self.cidade = self.lista.currentText()
-        self.valor_cidade = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[
-            tracker.df['tipo'] == 'city'].sum()
-        self.mortes = QtWidgets.QLabel(text="Número total de mortes: " + str(self.valor_cidade))
-        self.mortes.setStyleSheet("""
-            color: #090002;
-            font-family: Comic Sans MS;
-            font-size: 18px;
-            """)
-
-        """Layouts"""
-        self.layout = QtWidgets.QGridLayout(self)  # Cria o layout inicial
-        self.layout.addWidget(self.texto, 0, 0)  # Adiciona o texto
-        self.layout.addWidget(self.dark, 0, 1)  # Adiciona o botão
-        self.layout.setAlignment(QtCore.Qt.AlignTop)
-        self.layout.addWidget(self.lista, 0, 2)  # Adiciona o list
-        self.layout.addWidget(self.mortes, 3, 1)
-        self.mortes.move(50, 50)
 
         """Loop criado para inserir as citadel no display inicial"""
 
+        self.lista_header = QLabel(self.select_texto, self)
+        self.lista_header.move(800, 5)
+        self.lista_header.setStyleSheet("""
+        color: #FFFFFF;
+        font-family: Comic Sans MS;
+        font-seize: 15px;
+        """)
+
+        self.lista = QtWidgets.QComboBox(self)
         self.i = 0
         self.j = len(tracker.lista_cidades)
 
         while self.i < self.j:  # Um loop simples que pega a lista de cidades e coloca num widget de texto.
             self.lista.addItem(tracker.lista_cidades[self.i])
             self.i += 1
+        self.lista.setGeometry(800, 35, 165, 30)
+
+        self.cidade = self.lista.currentText()
+        self.valor_cidade = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[
+            tracker.df['tipo'] == 'city'].sum()
+        self.mortes = QLabel("Número total de mortes: " + str(self.valor_cidade), self)
+        self.mortes.setStyleSheet("""
+            color: #FFFFFF;
+            font-family: Comic Sans MS;
+            font-size: 15px;
+            """)
+        self.mortes.move(25, 200)
 
         """
         Botões com funções
@@ -138,7 +121,7 @@ class interface_principal(QtWidgets.QWidget):
 if __name__ == "__main__":
     app = QApplication()
     app.setStyleSheet(qdarkstyle.load_stylesheet(palette=LightPalette))
-    widget = interface_principal()
+    widget = InterfacePrincipal()
     widget.resize(1024, 550)
     widget.show()
 

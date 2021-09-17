@@ -1,6 +1,9 @@
+from calendar import calendar
+import locale
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+locale.setlocale(locale.LC_ALL, 'pt_BR')  # Define a localidade de como o programa deve ser utilizado.
 
 
 class tracker:
@@ -27,6 +30,9 @@ class tracker:
     df = df.drop_duplicates()  # retira valores duplicados.
     df['data'] = pd.to_datetime(df['data'])
     df['ano'] = pd.DatetimeIndex(df['data']).year
+    df['mes'] = pd.DatetimeIndex(df['data']).month
+    df['mes_nome'] = df['data'].dt.strftime('%B')  # transforma o numero da coluna mes para nome do mes
+    df['mes/ano'] = df['mes_nome'].astype(str) + "-" + df['ano'].astype(str)
 
     '''Variáveis'''
 
@@ -42,6 +48,8 @@ class tracker:
     mortes_max = df['mortes'].loc[df['estado'] == 'SP'].loc[df['tipo'] == 'city'].sum()
     mortes_max_array = df['mortes'].loc[df['estado'] == 'SP'].loc[df['tipo'] == 'city']
 
-    sns.set_theme(style="whitegrid")
-    ax = sns.barplot(x="ano", y="mortes", data=df)
-    plt.show()
+    """print(df)"""
+
+    """sns.set_theme(style="whitegrid")  # faz o gráfico aparecer.
+    ax = sns.barplot(x="mes/ano", y="mortes", data=df)
+    plt.show()"""
