@@ -67,6 +67,28 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
  
  ## EQUIPE 
  
+●   Master
+
+Emanuele Cristina da Silva Diniz Campo
+
+●   Desenvolvedores
+
+Cristiano Alberto Rosa
+
+Flávio Ferreira Antunes
+
+Gabriel Alves Miranda
+
+Gabryel Silva Monteiro
+
+Kelly Carolina Morais Terra
+
+Matheus Aparecido Ramos Lourenço
+
+Renan Moreira Pereira
+
+Wesley Ferreira da Silva
+  
  <br>
  
  ##  BLACKLOG TOTAL
