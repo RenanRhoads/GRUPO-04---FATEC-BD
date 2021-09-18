@@ -14,35 +14,35 @@ TRACKER - BD
 
 <br>
 
-## 📌OBJETIVOS
+## OBJETIVOS
 
 O objetivo é desenvolver um protótipo podendo ser página website ou app, com painel COVID-19 por coleta e Visualização de Dados. Temos as seguintes exigências:
 
 O protótipo deverá:
 
-✔️ Utilizar linguagem de programação Python;
+• Utilizar linguagem de programação Python;
 
-✔️ Manipular e tratar dados preferencialmente OFF-LINE (CSV);
+• Manipular e tratar dados preferencialmente OFF-LINE (CSV);
 
-✔️ Apresentar o maior número possível de visões contextualizadas (Graficamente ou não);
+• Apresentar o maior número possível de visões contextualizadas (Graficamente ou não);
 
-✔️ Apresentar dados somente do estado de São Paulo;
+• Apresentar dados somente do estado de São Paulo;
 
 O protótipo não poderá:
 
-❌ Utilizar 100% de APIs prontas e disponíveis no mercado;
+• Utilizar 100% de APIs prontas e disponíveis no mercado;
 
-❌ Utilizar relatórios disponíveis em sites governamentais ou não;
+• Utilizar relatórios disponíveis em sites governamentais ou não;
 
-❌ Não utilizar sistema de Gerenciamento de banco de dado;
+• Não utilizar sistema de Gerenciamento de banco de dado;
 
 
 
-## 📆 CRONOGRAMA
+## CRONOGRAMA
 
-   KICK OFF - 16/08 a 22/08; ✔️
+   KICK OFF - 16/08 a 22/08; 
 
-   SPRINT 1 - 08/09 a 19/09; ✔️
+   SPRINT 1 - 08/09 a 19/09; 
 
    SPRINT 2 - 20/09 a 10/10; 
 
@@ -58,14 +58,14 @@ O protótipo não poderá:
    
 <br>
 
-## ⚙️ TECNOLOGIAS UTILIZADAS
+## TECNOLOGIAS UTILIZADAS
 <div>
 <img src="https://user-images.githubusercontent.com/88864112/133908112-6a9ee071-bc29-4e40-8863-7c5f65caa619.jpg" width="700px" />
 <div>
 
 <br>
  
- ## 👥 EQUIPE 
+ ## EQUIPE 
  
  <br>
  
