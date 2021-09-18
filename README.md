@@ -3,11 +3,11 @@ TRACKER - BD
  <hr>
 
 <p align="center">
-  <a href ="#-objetivos"> Objetivos </a>  • 
-  <a href ="#-cronograma"> Cronograma </a>  •  
+  <a href ="#objetivos"> Objetivos </a>  • 
+  <a href ="#cronograma"> Cronograma </a>  •  
   <a href ="#tecnologias-utilizadas"> Tecnologias </a>  • 
-  <a href ="#-backlog-total"> Backlog </a>  • 
-  <a href ="#-equipe"> Equipe </a>  •
+  <a href ="#backlog-total"> Backlog </a>  • 
+  <a href ="#equipe"> Equipe </a>  •
 </p>
 
 <hr>
