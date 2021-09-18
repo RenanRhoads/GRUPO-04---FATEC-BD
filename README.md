@@ -8,6 +8,9 @@ TRACKER - BD
   <a href ="-tecnologias-utilizadas"> Tecnologias </a>  • 
   <a href ="#bar_chart-backlog-total"> Backlog </a>  • 
   <a href ="#mortar_board-equipe"> Equipe </a> 
+</p>
+
+<hr>
 
 <br>
 
