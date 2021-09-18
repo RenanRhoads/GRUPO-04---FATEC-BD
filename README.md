@@ -18,7 +18,7 @@
 
 O objetivo é desenvolver um protótipo podendo ser página website ou app, com painel COVID-19 por coleta e Visualização de Dados. Temos as seguintes exigências:
 
-O protótipo deverá:
+**O protótipo deverá:**
 
 • Utilizar linguagem de programação Python;
 
@@ -28,7 +28,7 @@ O protótipo deverá:
 
 • Apresentar dados somente do estado de São Paulo;
 
-O protótipo não poderá:
+**O protótipo não poderá:**
 
 • Utilizar 100% de APIs prontas e disponíveis no mercado;
 
