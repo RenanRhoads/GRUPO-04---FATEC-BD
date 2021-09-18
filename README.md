@@ -5,9 +5,9 @@ TRACKER - BD
 <p align="center">
   <a href ="#objetivos"> Objetivos </a>  • 
   <a href ="#cronograma"> Cronograma </a>  •  
-  <a href ="#tecnologias-utilizadas"> Tecnologias </a>  • 
-  <a href ="#backlog-total"> Backlog </a>  • 
+  <a href ="#tecnologias-utilizadas"> Tecnologias </a>  •  
   <a href ="#equipe"> Equipe </a>  •
+  <a href ="#backlog-total"> Backlog </a>  • 
 </p>
 
 <hr>
@@ -68,6 +68,10 @@ O protótipo não poderá:
  ## EQUIPE 
  
  <br>
+ 
+ ##  BLACKLOG TOTAL
+ 
+  <br>
  
  <div align="center">
 <img src="https://user-images.githubusercontent.com/88864112/133908665-89221a54-c877-430c-a592-74e55414ef0d.jpg"  height="90" /></h1>
