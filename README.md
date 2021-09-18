@@ -6,8 +6,8 @@ TRACKER - BD
   <a href ="#-objetivos"> Objetivos </a>  • 
   <a href ="#-cronograma"> Cronograma </a>  •  
   <a href ="#tecnologias-utilizadas"> Tecnologias </a>  • 
-  <a href ="#bar_chart-backlog-total"> Backlog </a>  • 
-  <a href ="#mortar_board-equipe"> Equipe </a> 
+  <a href ="#-backlog-total"> Backlog </a>  • 
+  <a href ="#-equipe"> Equipe </a>  •
 </p>
 
 <hr>
@@ -65,7 +65,7 @@ O protótipo não poderá:
 
 <br>
  
- ##👥 EQUIPE 
+ ## 👥 EQUIPE 
  
  <br>
  
