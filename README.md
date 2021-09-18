@@ -3,9 +3,9 @@ TRACKER - BD
  <hr>
 
 <p align="center">
-  <a href ="-objetivos"> Objetivos </a>  • 
-  <a href ="-cronograma"> Cronograma </a>  •  
-  <a href ="-tecnologias-utilizadas"> Tecnologias </a>  • 
+  <a href ="#-objetivos"> Objetivos </a>  • 
+  <a href ="#-cronograma"> Cronograma </a>  •  
+  <a href ="#-tecnologias-utilizadas"> Tecnologias </a>  • 
   <a href ="#bar_chart-backlog-total"> Backlog </a>  • 
   <a href ="#mortar_board-equipe"> Equipe </a> 
 </p>
@@ -14,7 +14,7 @@ TRACKER - BD
 
 <br>
 
-## 📌 OBJETIVOS 
+## 📌OBJETIVOS
 
 O objetivo é desenvolver um protótipo podendo ser página website ou app, com painel COVID-19 por coleta e Visualização de Dados. Temos as seguintes exigências:
 
