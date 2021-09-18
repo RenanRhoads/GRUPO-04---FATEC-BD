@@ -5,7 +5,7 @@ TRACKER - BD
 <p align="center">
   <a href ="#-objetivos"> Objetivos </a>  • 
   <a href ="#-cronograma"> Cronograma </a>  •  
-  <a href ="#-tecnologias-utilizadas"> Tecnologias </a>  • 
+  <a href ="#tecnologias-utilizadas"> Tecnologias </a>  • 
   <a href ="#bar_chart-backlog-total"> Backlog </a>  • 
   <a href ="#mortar_board-equipe"> Equipe </a> 
 </p>
@@ -62,6 +62,7 @@ O protótipo não poderá:
 <img src="https://user-images.githubusercontent.com/88864112/133908112-6a9ee071-bc29-4e40-8863-7c5f65caa619.jpg" width="700px" />
 <div>
 
+ 
 
  
  <div align="center">
