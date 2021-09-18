@@ -48,8 +48,11 @@ class tracker:
     mortes_max = df['mortes'].loc[df['estado'] == 'SP'].loc[df['tipo'] == 'city'].sum()
     mortes_max_array = df['mortes'].loc[df['estado'] == 'SP'].loc[df['tipo'] == 'city']
 
-    """print(df)"""
+    cidade_sel = df[df.cidade == 'São Paulo']
 
-    """sns.set_theme(style="whitegrid")  # faz o gráfico aparecer.
-    ax = sns.barplot(x="mes/ano", y="mortes", data=df)
+    print(cidade_sel)
+    sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
+
+    """ax = sns.catlot(kind='bar', x="mes", y='mortes', data=cidade_sel)
+    plt.rcParams['toolbar'] = 'None'
     plt.show()"""
