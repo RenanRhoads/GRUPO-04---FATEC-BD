@@ -1,8 +1,17 @@
-# GRUPO-04---FATEC-BD
-TRANCKER - BD - TURMA 02-2021
+TRANCKER - BD
+ TURMA 02-2021
+ <hr>
 
+<p align="center">
+  <a href ="-objetivos"> Objetivos </a>  • 
+  <a href ="-cronograma"> Cronograma </a>  •  
+  <a href ="-tecnologias-utilizadas"> Tecnologias </a>  • 
+  <a href ="#bar_chart-backlog-total"> Backlog </a>  • 
+  <a href ="#mortar_board-equipe"> Equipe </a> 
 
-📌 OBJETIVOS 
+<br>
+
+## 📌 OBJETIVOS 
 
 O objetivo é desenvolver um protótipo podendo ser página website ou app, com painel COVID-19 por coleta e Visualização de Dados. Temos as seguintes exigências:
 
@@ -26,7 +35,7 @@ O protótipo não poderá:
 
 
 
-📆 CRONOGRAMA
+## 📆 CRONOGRAMA
 
    KICK OFF - 16/08 a 22/08; ✔️
 
@@ -43,3 +52,9 @@ O protótipo não poderá:
    Apresentação Final - 29/11 a 05/12;
 
    Feira de Soluções - 16/12;
+   
+   
+## ⚙️ TECNOLOGIAS UTILIZADAS
+<div>
+<img src="https://user-images.githubusercontent.com/88864112/133908112-6a9ee071-bc29-4e40-8863-7c5f65caa619.jpg" width="700px" />
+<div>
