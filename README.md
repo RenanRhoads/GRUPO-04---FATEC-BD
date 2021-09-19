@@ -3,11 +3,11 @@
    
  <hr>
 <p align="center">
-  <a href ="#pushpin-objetivos"> Objetivos </a>  • 
-  <a href ="#calendar-cronograma"> Cronograma </a>  • 
-  <a href ="#wrench-tecnologias-utilizadas"> Tecnologias </a>  •
-  <a href ="#mortar_board-equipe"> Equipe </a> 
-  <a href ="#bar_chart-backlog-total"> Backlog </a>  • 
+  <a href ="#objetivos"> Objetivos </a>  • 
+  <a href ="#cronograma"> Cronograma </a>  • 
+  <a href ="#tecnologias-utilizadas"> Tecnologias </a>  •
+  <a href ="#equipe"> Equipe </a>   •
+  <a href ="#backlog-total"> Backlog </a>  
  
 </p>
 
