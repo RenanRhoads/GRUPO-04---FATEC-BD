@@ -57,6 +57,7 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
 
    Feira de Soluções - 16/12;
    
+   <br>
    
    **[Sprint 1] - 18/09/2021**
    
