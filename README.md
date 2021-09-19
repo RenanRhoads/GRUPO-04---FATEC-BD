@@ -3,7 +3,7 @@
    
  <hr>
 <p align="center">
-  <a href ="#objetivos"> Objetivos </a>  • 
+  <a href ="#pushpin-objetivos"> Objetivos </a>  • 
   <a href ="#cronograma"> Cronograma </a>  • 
   <a href ="#tecnologias-utilizadas"> Tecnologias </a>  •
   <a href ="#equipe"> Equipe </a>   •
@@ -15,7 +15,7 @@
 
 <br>
 
-##📌OBJETIVOS
+# :pushpin: OBJETIVOS
 
 O objetivo é desenvolver um protótipo podendo ser página website ou app, com painel COVID-19 por coleta e Visualização de Dados. Temos as seguintes exigências:
 
@@ -61,7 +61,7 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
 <br>
 
 
-## ⚙️TECNOLOGIAS UTILIZADAS
+##  ⚙️TECNOLOGIAS UTILIZADAS
 <div>
 <img src="https://user-images.githubusercontent.com/88864112/133908112-6a9ee071-bc29-4e40-8863-7c5f65caa619.jpg" width="700px" />
 <div>
@@ -94,7 +94,7 @@ Wesley Ferreira da Silva
   
 <br>
  
- ## 📝BLACKLOG TOTAL
+ ##  📝BLACKLOG TOTAL
  
 <br>
  
