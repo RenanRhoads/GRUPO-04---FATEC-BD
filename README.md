@@ -78,7 +78,7 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
 
 ##  ⚙TECNOLOGIAS UTILIZADAS
 <div>
-<img src="https://user-images.githubusercontent.com/88864112/133908112-6a9ee071-bc29-4e40-8863-7c5f65caa619.jpg" width="700px" />
+<img src="https://user-images.githubusercontent.com/88864112/133908112-6a9ee071-bc29-4e40-8863-7c5f65caa619.jpg" width="400px" />
 <div>
 
 <br>
@@ -110,7 +110,9 @@ Wesley Ferreira da Silva
 <br>
  
  ##  📝BLACKLOG TOTAL
- 
+  
+ <h1 align="left"> <img src = "https://user-images.githubusercontent.com/88864112/133946354-cebcb2b6-04ec-4c93-942c-fda4f5fc5d3d.jpg" height="650" /></h1>
+
 <br>
  
  <div align="center">
