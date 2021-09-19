@@ -1,6 +1,8 @@
 from covid import tracker
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtWidgets import *
+from datetime import date
+
 
 # Este arquivo foi criado e modificado por Renan Moreira Pereira (Grupo 4 - FATEC 2021)
 
@@ -21,6 +23,10 @@ class InterfacePrincipal(QMainWindow):
         self.hello = "Seja bem-vindo ao Covid Tracker!"
         self.items = tracker.lista_cidades  # definindo variáveis acima.
         self.select_texto = "Digite o nome de sua cidade:"
+        self.data = str(date.today().strftime("%d/%m/%Y"))
+        self.data_filter = date.today().strftime("%y-%m-%d")
+        self.data_1 = QtWidgets.QLabel(self.data, self)
+        self.data_1.move(950, 525)
 
         self.dark = QtWidgets.QPushButton("Modo Escuro")
 
@@ -53,8 +59,12 @@ class InterfacePrincipal(QMainWindow):
         self.lista.setEditable(True)
 
         self.cidade = self.lista.currentText()
+
         self.valor_cidade = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[
             tracker.df['tipo'] == 'city'].sum()
+        self.valor_dia = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[
+            tracker.df['tipo'] == 'city'].loc[tracker.df['data'] == self.data_filter].sum()
+
         self.mortes = QtWidgets.QLabel("Número total de mortes: " + str(self.valor_cidade), self)
         self.mortes.setStyleSheet("""
             color: #FFFFFF;
@@ -66,6 +76,17 @@ class InterfacePrincipal(QMainWindow):
             font-size: 15px;
             """)
         self.mortes.setGeometry(25, 200, 250, 150)
+
+        self.mortes_dia = QtWidgets.QLabel("Novas mortes: " + str(self.valor_dia), self)
+        self.mortes_dia.setStyleSheet("""
+            color: #FFFFFF;
+            font-family: Comic Sans MS;
+            font: bold 15px;
+            background-color: #90AFC5;
+            border-width: 2px;
+            border-radius: 10px;
+            font-size: 15px;""")
+        self.mortes_dia.setGeometry(25, 300, 250, 150)
 
         """
         Botões com funções
