@@ -69,7 +69,7 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
  
 ●   Master
 
-Emanuele Cristina da Silva Diniz Campo
+Emanuele Cristina da Silva Diniz Campos
 
 ●   Desenvolvedores
 
