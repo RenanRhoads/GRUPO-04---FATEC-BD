@@ -57,6 +57,20 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
 
    Feira de Soluções - 16/12;
    
+   
+   **[Sprint 1] - 18/09/2021**
+   
+   Para o primeiro Sprint, as seguintes adições foram incluídas no programa:
+   
+   • Cidades registradas no arquivo csv. 
+   
+   • Filtro de pesquisa por cidade. 
+   
+   • Número total de mortes. 
+   
+   • Atualização dos dados de forma automática. 
+   
+   • reescrita do código para visualização gráfica.
 
 <br>
 
