@@ -109,9 +109,9 @@ Wesley Ferreira da Silva
   
 <br>
  
- ##  📝BLACKLOG TOTAL
+ ##  📝BACKLOG TOTAL
   
- <h1 align="left"> <img src = "https://user-images.githubusercontent.com/88864112/133946354-cebcb2b6-04ec-4c93-942c-fda4f5fc5d3d.jpg" height="650" /></h1>
+ <h1 align="left"> <img src = "https://user-images.githubusercontent.com/88864112/133947259-852ee6de-9a47-46c4-9824-351035a4b0e2.jpg" height="650" /></h1>
 
 <br>
  
