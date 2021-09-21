@@ -71,7 +71,6 @@ class tracker:
 
     sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
 
-    # Initialize the matplotlib figure
     f, ax = plt.subplots(figsize=(6, 15))
 
     # gráfico que mostra as 10 maiores cidades por quantidade de mortos
