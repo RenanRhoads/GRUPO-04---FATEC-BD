@@ -54,22 +54,17 @@ class tracker:
     dia_1 = date.today() - timedelta(days=1)
     dia_1.strftime("%Y-%m-%d")
 
-    total_mortes = df['mortes'].loc[df['estado'] == 'SP'].sum()  # Soma somente as mortes do estado de SP
-    total_mortes_dia = df['mortes'].loc[df['data'] == str(dia_1)].sum()
+    total_mortes = df['mortes'].loc[df['estado'] == 'SP'].loc[df['data'] == '2021-09-18'].sum()  # Soma somente as mortes do estado de SP
+    total_mortes_dia = df['mortes'].loc[df['data'] == '2021-09-18'].sum()
 
     lista_cidades = df['cidade'].loc[df['estado'] == 'SP'].loc[df['cidade'] != ''].drop_duplicates().sort_values() \
         .tolist()
     """Transforma os valores em lista, e coloca em ordem alfabética."""
 
-    mortes_media = df['mortes'].loc[df['estado'] == 'SP'].loc[df['mortes'] > 0].mean()
-    mortes_max = df['mortes'].loc[df['estado'] == 'SP'].loc[df['tipo'] == 'city'].sum()
-    mortes_max_array = df['mortes'].loc[df['estado'] == 'SP'].loc[df['tipo'] == 'city']
-
     cidade_sel = df[df.cidade == 'São Paulo']
-    mortes_data = df[df.data == str(dia_1)].sum()
+    teste = df[df.data == '2021-09-18']
 
     print(dia_1)
     print(total_mortes)
-    print(total_mortes_dia)
 
     sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
