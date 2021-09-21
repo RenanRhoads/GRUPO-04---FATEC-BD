@@ -1,4 +1,6 @@
 from PyQt5.QtCore import QRunnable
+from matplotlib import pyplot as plt
+
 from covid import tracker
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import *
@@ -73,8 +75,13 @@ class InterfacePrincipal(QMainWindow):
 
         self.atualizarButton = QtWidgets.QPushButton(self)
         self.atualizarButton.clicked.connect(self.atualizar_dados)
-        self.atualizarButton.setGeometry(650, 525, 200, 25)
+        self.atualizarButton.setGeometry(650, 520, 200, 25)
         self.atualizarButton.setText("Atualizar dados.")
+
+        self.grafButton = QtWidgets.QPushButton(self)
+        self.grafButton.clicked.connect(self.showGraf)
+        self.grafButton.setGeometry(15, 520, 120, 25)
+        self.grafButton.setText("Top 10 cidades")
 
         self.texto = QtWidgets.QLabel(self.hello, self)
         self.texto.setStyleSheet(css.default)
@@ -133,6 +140,9 @@ class InterfacePrincipal(QMainWindow):
         logging.info("Main    : Inicializando a thread para atualizar o arquivo.")
         x = threading.Thread(target=Updating.atualizar, args=(1,))
         x.start()
+
+    def showGraf(self):
+        plt.show()
 
 
 if __name__ == "__main__":

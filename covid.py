@@ -1,7 +1,8 @@
 import locale
 import pandas as pd
-import seaborn as sns
 import os
+import seaborn as sns
+import matplotlib.pyplot as plt
 from datetime import date, timedelta
 
 locale.setlocale(locale.LC_ALL, 'pt_BR')  # Define a localidade de como o programa deve ser utilizado.
@@ -25,12 +26,13 @@ class tracker:
 
     df = pd.DataFrame(data=file,
                       columns=['city', 'date', 'state', 'last_available_deaths', 'place_type',
-                               'new_deaths'])  # transforma o arquivo csv em um dataframe e seleciona as colunas
+                               'new_deaths',
+                               'new_confirmed'])  # transforma o arquivo csv em um dataframe e seleciona as colunas
 
     df = df.rename(
         columns={"city": "cidade", 'state': 'estado',
                  'last_available_deaths': 'mortes confirmadas', 'place_type': 'tipo',
-                 'new_deaths': 'mortes', 'date': 'data'})
+                 'new_deaths': 'mortes', 'date': 'data', 'new_confirmed': 'novos casos'})
     """Renomeia as colunas"""
 
     df = df.loc[df['estado'] == 'SP'].loc[
@@ -54,17 +56,26 @@ class tracker:
     dia_1 = date.today() - timedelta(days=1)
     dia_1.strftime("%Y-%m-%d")
 
-    total_mortes = df['mortes'].loc[df['estado'] == 'SP'].loc[df['data'] == '2021-09-18'].sum()  # Soma somente as mortes do estado de SP
-    total_mortes_dia = df['mortes'].loc[df['data'] == '2021-09-18'].sum()
+    total_mortes = df['mortes'].loc[df['estado'] == 'SP'].loc[
+        df['data'] == str(dia_1)].sum()  # Soma somente as mortes do estado de SP
+    novos_casos = df['novos casos'].loc[df['estado'] == 'SP'].loc[df['data'] == str(dia_1)].sum()  # Soma os casos novos
+    total_mortes_dia = df['mortes'].loc[df['data'] == '2020-09-18'].sum()
 
     lista_cidades = df['cidade'].loc[df['estado'] == 'SP'].loc[df['cidade'] != ''].drop_duplicates().sort_values() \
         .tolist()
     """Transforma os valores em lista, e coloca em ordem alfabética."""
 
     cidade_sel = df[df.cidade == 'São Paulo']
-    teste = df[df.data == '2021-09-18']
 
-    print(dia_1)
-    print(total_mortes)
+    print(total_mortes_dia)
 
     sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
+
+    # Initialize the matplotlib figure
+    f, ax = plt.subplots(figsize=(6, 15))
+
+    # gráfico que mostra as 10 maiores cidades por quantidade de mortos
+    sns.set_color_codes("pastel")
+    sns.barplot(x="mortes", y="cidade", data=df,
+                label="Total", color="b", estimator=sum, order=df.value_counts(df['cidade']).iloc[:10].index)
+    #plt.show()
