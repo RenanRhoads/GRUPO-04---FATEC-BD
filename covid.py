@@ -5,6 +5,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from datetime import date, timedelta
 
+# 21/09/2021 - Matheus Lourenço - Adicionado gráfico de top 10 cidades mortes por Covid
+
 locale.setlocale(locale.LC_ALL, 'pt_BR')  # Define a localidade de como o programa deve ser utilizado.
 
 
