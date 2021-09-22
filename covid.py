@@ -43,22 +43,22 @@ class tracker:
     """altera os valores de NaN para valor em branco."""
 
     df = df.drop_duplicates()  # retira valores duplicados.
-    df['data'] = pd.to_datetime(df['data'])
-    df['ano'] = pd.DatetimeIndex(df['data']).year
-    df['mes'] = pd.DatetimeIndex(df['data']).month
+    df['data'] = pd.to_datetime(df['data'])     # cria uma coluna de data
+    df['ano'] = pd.DatetimeIndex(df['data']).year   # cria uma coluna de ano
+    df['mes'] = pd.DatetimeIndex(df['data']).month  # cria uma coluna de mes
     df['mes_nome'] = df['data'].dt.strftime('%B')  # transforma o numero da coluna 'mes' para nome do mes
-    df['mes/ano'] = df['mes_nome'].astype(str) + "-" + df['ano'].astype(str)
+    df['mes/ano'] = df['mes_nome'].astype(str) + "-" + df['ano'].astype(str)    # concatena mes e ano
 
     '''Variáveis'''
-
-    df_by_cidade = df.loc[df['cidade'] != ''].groupby(by=['cidade'])
 
     dia_1 = date.today() - timedelta(days=1)
     dia_1.strftime("%Y-%m-%d")
 
-    total_mortes = df['mortes'].loc[df['estado'] == 'SP'].loc[
+    total_mortes_sp = df['mortes'].loc[df['estado'] == 'SP'].loc[
         df['data'] == str(dia_1)].sum()  # Soma somente as mortes do estado de SP
+
     novos_casos = df['novos casos'].loc[df['estado'] == 'SP'].loc[df['data'] == str(dia_1)].sum()  # Soma os casos novos
+
     total_mortes_dia = df['mortes'].loc[df['data'] == '2020-09-18'].sum()
 
     lista_cidades = df['cidade'].loc[df['estado'] == 'SP'].loc[df['cidade'] != ''].drop_duplicates().sort_values() \
@@ -67,8 +67,8 @@ class tracker:
 
     cidade_sel = df[df.cidade == 'São Paulo']
 
-    print(total_mortes_dia)
 
+########################################################################################################################
     sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
 
     f, ax = plt.subplots(figsize=(6, 15))

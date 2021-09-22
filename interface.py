@@ -1,6 +1,5 @@
 from PyQt5.QtCore import QRunnable
 from matplotlib import pyplot as plt
-
 from covid import tracker
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import *
@@ -20,7 +19,6 @@ import threading
 # TODO: Adicionar gráficos nas visualizações.
 # TODO: Todos os Widgets devem ter a cor alterado ao selecionar o modo escuro.
 # TODO: Novas variáveis para melhores visualizações de dados.
-# TODO: Utilizar Matplotlib e Seaborn para utilzar os gráficos.
 
 
 class Updating(QRunnable):
@@ -55,8 +53,6 @@ class InterfacePrincipal(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setStyleSheet(css.blueish)  # Define para o tema escuro.
-
         self.DarkModeStatus = 0
 
         self.hello = "Seja bem-vindo ao Covid Tracker!"
@@ -71,7 +67,7 @@ class InterfacePrincipal(QMainWindow):
         self.data_string = self.data_less_1.strftime("%y-%m-%d")
 
         self.data_1 = QtWidgets.QLabel(self.data, self)
-        self.data_1.move(950, 525)
+        self.data_1.move(950, 520)
 
         self.atualizarButton = QtWidgets.QPushButton(self)
         self.atualizarButton.clicked.connect(self.atualizar_dados)
@@ -112,11 +108,11 @@ class InterfacePrincipal(QMainWindow):
             tracker.df['tipo'] == 'city'].loc[tracker.df['data'] == self.data_string].sum()
         """Calcula a data atual - 1 para saber a quantidade de novas mortes """
 
-        self.mortes = QtWidgets.QLabel("Número total de mortes: " + str(self.valor_cidade), self)
+        self.mortes = QtWidgets.QLabel("   Número total de mortes: " + str(self.valor_cidade), self)
         self.mortes.setStyleSheet(css.blueish_label)
         self.mortes.setGeometry(25, 200, 250, 150)
 
-        self.mortes_dia = QtWidgets.QLabel("Novas mortes: " + str(self.valor_dia), self)
+        self.mortes_dia = QtWidgets.QLabel("   Novas mortes: " + str(self.valor_dia), self)
         self.mortes_dia.setStyleSheet(css.blueish_label)
         self.mortes_dia.setGeometry(25, 300, 250, 150)
 
@@ -131,7 +127,7 @@ class InterfacePrincipal(QMainWindow):
         self.valor_cidade_selected = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
             tracker.df['tipo'] == 'city'].sum()  # Realiza a filtragem de acordo com a cidade selecionada.
 
-        self.mortes.setText("Número total de Mortes: " + str(int(self.valor_cidade_selected)))
+        self.mortes.setText("   Número total de Mortes: " + str(int(self.valor_cidade_selected)))
         """Altera o valor dos números de mortes que podemos ver."""
 
     def atualizar_dados(self):
@@ -148,6 +144,7 @@ class InterfacePrincipal(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setStyle('Fusion')
+    app.setStyleSheet(css.blueish_main)
     widget = InterfacePrincipal()
     widget.setFixedSize(1024, 550)
     widget.show()

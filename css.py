@@ -11,6 +11,14 @@ class css:
     blueish = """
                 background-color: #336B87;
                 """
+    blueish_main = """
+                InterfacePrincipal {
+                background-color: #336B87;
+                background-image: url(Xaropinho.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                }
+                """
     blueish_text = """
                 color: #FFFFFF;
                 font-family: Comic Sans MS;
