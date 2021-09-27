@@ -69,6 +69,10 @@ class tracker:
 
     cidade_sel = df[df.cidade == 'São Paulo']
 
+    total_mortes_cidade = df[['cidade', 'mortes']].groupby('cidade').sum().sort_values(by='mortes', ascending=False) \
+        .iloc[:10] # Ordena as cidades de forma decrescente e mostra as 10 cidades com maior numero de morte
+    #print(total_mortes_cidade)
+
 
 ########################################################################################################################
     sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
@@ -78,5 +82,7 @@ class tracker:
     # gráfico que mostra as 10 maiores cidades por quantidade de mortos
     sns.set_color_codes("pastel")
     sns.barplot(x="mortes", y="cidade", data=df,
-                label="Total", color="b", estimator=sum, order=df.value_counts(df['cidade']).iloc[:10].index)
-    #plt.show()
+                label="Total", color="b", estimator=sum, order=total_mortes_cidade.index)
+    plt.show()
+
+
