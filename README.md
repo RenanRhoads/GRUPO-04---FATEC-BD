@@ -85,27 +85,16 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
  
  ## 👥EQUIPE 
  
-●   Master
+|Nome|Função|GitHub|
+| -------- |-------- |-------- |
+|**Emanuele Campos**|Scrum Master|[@GitHub](https://github.com/ecampos14)|
+|**Flavio Antunes**|Desenvolvedor|[@GitHub]()|
+|**Gabryel Monteiro**|Desenvolvedor|[@GitHub](https://github.com/GabryelSM)|
+|**Kelly Terra**|Desenvolvedor|[@GitHub](https://github.com/Kellyterra)|
+|**Matheus Lourenço**|Desenvolvedor|[@GitHub](https://github.com/MatheusLourenco99)|
+|**Renan Pereira**|Desenvolvedor|[@GitHub](https://github.com/RenanRhoads)|
+|**Wesley Silva**|Desenvolvedor|[@GitHub]()|
 
-Emanuele Cristina da Silva Diniz Campos
-
-●   Desenvolvedores
-
-Cristiano Alberto Rosa
-
-Flávio Ferreira Antunes
-
-Gabriel Alves Miranda
-
-Gabryel Silva Monteiro
-
-Kelly Carolina Morais Terra
-
-Matheus Aparecido Ramos Lourenço
-
-Renan Moreira Pereira
-
-Wesley Ferreira da Silva
   
 <br>
  
