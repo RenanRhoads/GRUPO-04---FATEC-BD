@@ -98,7 +98,7 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
   
 <br>
  
- ##  📝BACKLOG TOTAL
+ ##  📝BACKLOG DO PRODUTO 
   
  <h1 align="left"> <img src = "https://user-images.githubusercontent.com/88864112/133947259-852ee6de-9a47-46c4-9824-351035a4b0e2.jpg" height="650" /></h1>
 
