@@ -7,7 +7,7 @@
   <a href ="#cronograma"> Cronograma </a>  • 
   <a href ="#tecnologias-utilizadas"> Tecnologias </a>  •
   <a href ="#equipe"> Equipe </a>   •
-  <a href ="#backlog-total"> Backlog </a>  
+  <a href ="#backlog-do-produto"> Backlog </a>  
  
 </p>
 
