@@ -100,7 +100,7 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
  
  ##  📝BACKLOG DO PRODUTO 
   
- <h1 align="left"> <img src = "https://user-images.githubusercontent.com/88864112/137827661-f72d2c69-ac75-452a-b2d7-5cd1d7c4891a.jpg" height="650" /></h1>
+ <h1 align="left"> <img src = "https://user-images.githubusercontent.com/88864112/137827661-f72d2c69-ac75-452a-b2d7-5cd1d7c4891a.jpg" height="800" /></h1>
 
 <br>
  
