@@ -78,7 +78,7 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
 
 ##  ⚙TECNOLOGIAS UTILIZADAS
 <div>
-<img src="https://user-images.githubusercontent.com/88864112/137003368-98336ec4-33c0-41ee-94f3-8e7e2df238eb.jpg" width="400px" />
+<img src="https://user-images.githubusercontent.com/88864112/137003368-98336ec4-33c0-41ee-94f3-8e7e2df238eb.jpg" width="450px" />
 <div>
 
 <br>
@@ -100,12 +100,12 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
  
  ##  📝BACKLOG DO PRODUTO 
   
- <h1 align="left"> <img src = "https://user-images.githubusercontent.com/88864112/133947259-852ee6de-9a47-46c4-9824-351035a4b0e2.jpg" height="650" /></h1>
+ <h1 align="left"> <img src = "https://user-images.githubusercontent.com/88864112/137827661-f72d2c69-ac75-452a-b2d7-5cd1d7c4891a.jpg" height="650" /></h1>
 
 <br>
  
  <div align="center">
-<img src="https://user-images.githubusercontent.com/88864112/133908665-89221a54-c877-430c-a592-74e55414ef0d.jpg"  height="90" /></h1>
+<img src="https://user-images.githubusercontent.com/88864112/133908665-89221a54-c877-430c-a592-74e55414ef0d.jpg"  height="60" /></h1>
 <div>
  
  <div align="center"> API 02-2021 - Fatec São José dos Campos
