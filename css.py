@@ -1,4 +1,4 @@
-from PyQt5.uic.properties import QtGui
+
 
 """Nesse arquivo se encontram todos os padrões de cores utilizados para botões, backgrounds e etcs."""
 
