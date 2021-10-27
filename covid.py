@@ -77,24 +77,25 @@ class tracker:
 
     ####################################################################################################################
 
-    print(lista_ano)
     """Solicita Input de cidade para o usuário."""
-    user_select_city = input("Digite o nome da cidade: \n")
+
+
+    """user_select_city = input("Digite o nome da cidade: \n")
     city_sel = user_select_city
     user_select_year = int(input('Digite o Ano desejado: '))
     ano_sel = user_select_year
     cidade_sel = df[df.cidade == str(city_sel)]
 
-    """Gráfico para as 10 cidades com mais mortes"""
+    #Gráfico para as 10 cidades com mais mortes
     sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
     f, ax = plt.subplots(figsize=(6, 15))
     sns.set_color_codes("pastel")
     sns.barplot(x="mortes", y="cidade", data=df,
                 label="Total", color="b", estimator=sum, order=total_mortes_cidade.index)
 
-    """Gráfico por mês da cidade selecionada"""
+    #Gráfico por mês da cidade selecionada
     sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
     f2, ax2 = plt.subplots(figsize=(6, 15))
     sns.set_color_codes("pastel")
     sns.lineplot(x="mes_nome", y="mortes", data=cidade_sel,
-                 label="Total", color="b", estimator=sum)
+                 label="Total", color="b", estimator=sum)"""

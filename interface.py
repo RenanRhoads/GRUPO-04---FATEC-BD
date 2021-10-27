@@ -14,6 +14,7 @@ import logging
 import sys
 import random
 import threading
+import seaborn as sns
 
 
 class Updating(QRunnable):
@@ -54,9 +55,9 @@ class Window(QDialog):
         # abaixo, opção de zoom e salvar uma imagem do gráfico.
         self.toolbar = NavigationToolbar(self.canvas, self)
 
-        # Just some button connected to `plot` method
+        # botão que ativa a função plot, apenas para testes
         self.button = QPushButton('Plot')
-        self.button.clicked.connect(self.plot)
+        self.button.clicked.connect(self.plot_2)
 
         self.hello = "Seja bem-vindo ao Covid Tracker!"
         self.select_texto = "Digite o nome de sua cidade:"
@@ -139,13 +140,24 @@ class Window(QDialog):
     def plot(self):
         """ gera um gráfico aleatório só para testes """
         data = [random.random() for i in range(10)]
+        a = [1, 2, 3]
+        b = [2, 4, 6]
 
         self.figure.clear()
-
+        self.figure(figsize=(12, 6))
         ax = self.figure.add_subplot(111)
+        ax.plot(a, b)
 
-        ax.plot(data, '*-')
+        self.canvas.draw()
 
+    def plot_2(self):
+
+        sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
+        ax = self.figure.add_subplot(111)
+        sns.set_color_codes("pastel")
+        sns.barplot(x="mortes", y="cidade", data=tracker.df,
+                    label="Total", color="b", estimator=sum, order=tracker.total_mortes_cidade.index)
+        ax.plot()
         self.canvas.draw()
 
     def item_usuario(self):
