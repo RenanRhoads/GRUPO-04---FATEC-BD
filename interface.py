@@ -5,7 +5,6 @@ from matplotlib import pyplot as plt
 from covid import tracker
 from PyQt5.QtWidgets import *
 from datetime import date, timedelta
-from css import css
 import os
 import requests
 import shutil
@@ -14,6 +13,17 @@ import logging
 import sys
 import random
 import threading
+import seaborn as sns
+import tkinter as tk
+
+#código simples para verificar o tamanho da tela do usuário.
+root = tk.Tk()
+
+_x = root.winfo_screenwidth()
+_y = root.winfo_screenheight()
+
+print(_x)
+print(_y)
 
 
 class Updating(QRunnable):
@@ -43,18 +53,21 @@ class Updating(QRunnable):
 
 
 class Window(QDialog):
+    cidade_selected: str
+
     def __init__(self, parent=None):
         super(Window, self).__init__(parent)
 
+        self.setFixedSize(_x, _y)
         self.figure = plt.figure()
         # transforma o gráfico em uma figure.
         self.canvas = FigureCanvas(self.figure)
         # abaixo, opção de zoom e salvar uma imagem do gráfico.
         self.toolbar = NavigationToolbar(self.canvas, self)
 
-        # Just some button connected to `plot` method
+        # botão que ativa a função plot, apenas para testes
         self.button = QPushButton('Plot')
-        self.button.clicked.connect(self.plot)
+        self.button.clicked.connect(self.plot_2)
 
         self.hello = "Seja bem-vindo ao Covid Tracker!"
         self.select_texto = "Digite o nome de sua cidade:"
@@ -95,13 +108,13 @@ class Window(QDialog):
             self.lista_ano.addItem(tracker.lista_ano[self.r])
             self.r += 1
 
-        self.lista_ano.setEditable(True)
+        self.lista_ano.setEditable(False)
 
         self.cidade = self.lista.currentText()
         self.ano = self.lista_ano.currentText()
 
         self.valor_cidade = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[
-            tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == self.ano].sum()
+            tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano)].sum()
 
         """Filtro se altera com base na cidade que o usuário seleciona"""
         self.valor_dia = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[
@@ -109,14 +122,14 @@ class Window(QDialog):
 
         """Calcula a data atual - 1 para saber a quantidade de novas mortes """
 
-        self.mortes = QLabel("   Número total de Mortes: " + str(self.valor_cidade), self)
-        self.mortes_dia = QLabel("   Novas mortes: " + str(self.valor_dia), self)
-
+        self.mortes = QLabel("Número total de Mortes: " + str(self.valor_cidade), self)
+        self.mortes_dia = QLabel("Novas mortes: " + str(self.valor_dia), self)
 
         """
         Botões com funções
         """
         self.lista.activated.connect(self.item_usuario)
+        self.lista_ano.activated.connect(self.item_usuario)
 
         layout = QGridLayout()
         layout.addWidget(self.texto)
@@ -133,24 +146,30 @@ class Window(QDialog):
         layout.addWidget(self.mortes, 4, 1)
         self.setLayout(layout)
 
-    def plot(self):
-        """ gera um gráfico aleatório só para testes """
-        data = [random.random() for i in range(10)]
+    def plot_2(self):
 
-        self.figure.clear()
+        # gera o na tela o gráfico de top 10 cidades com mais mortes.
 
+        sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
         ax = self.figure.add_subplot(111)
-
-        ax.plot(data, '*-')
+        sns.plotting_context(font_scale=0.2)
+        sns.set_color_codes("pastel")
+        sns.barplot(x="mortes", y="cidade", data=tracker.df,
+                    label="Total", color="b", estimator=sum, order=tracker.total_mortes_cidade.index)
+        ax.plot()
 
         self.canvas.draw()
 
     def item_usuario(self):
         self.cidade_selected = self.lista.currentText()
+        self.ano_selected = self.lista_ano.currentText()
+        print(self.ano_selected)
         self.valor_cidade_selected = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
-            tracker.df['tipo'] == 'city'].sum()  # Realiza a filtragem de acordo com a cidade selecionada.
+            tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum()
 
-        self.mortes.setText("   Número total de Mortes: " + str(int(self.valor_cidade_selected)))
+        # Realiza a filtragem de acordo com a cidade selecionada.
+
+        self.mortes.setText("Número total de Mortes: " + str(int(self.valor_cidade_selected)))
         """Altera o valor dos números de mortes que podemos ver."""
 
     def atualizar_dados(self):
