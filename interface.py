@@ -43,6 +43,8 @@ class Updating(QRunnable):
 
 
 class Window(QDialog):
+    cidade_selected: str
+
     def __init__(self, parent=None):
         super(Window, self).__init__(parent)
 
@@ -95,13 +97,13 @@ class Window(QDialog):
             self.lista_ano.addItem(tracker.lista_ano[self.r])
             self.r += 1
 
-        self.lista_ano.setEditable(True)
+        self.lista_ano.setEditable(False)
 
         self.cidade = self.lista.currentText()
         self.ano = self.lista_ano.currentText()
 
         self.valor_cidade = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[
-            tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == self.ano].sum()
+            tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano)].sum()
 
         """Filtro se altera com base na cidade que o usuário seleciona"""
         self.valor_dia = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[
@@ -109,14 +111,15 @@ class Window(QDialog):
 
         """Calcula a data atual - 1 para saber a quantidade de novas mortes """
 
-        self.mortes = QLabel("   Número total de Mortes: " + str(self.valor_cidade), self)
-        self.mortes_dia = QLabel("   Novas mortes: " + str(self.valor_dia), self)
+        self.mortes = QLabel("Número total de Mortes: " + str(self.valor_cidade), self)
+        self.mortes_dia = QLabel("Novas mortes: " + str(self.valor_dia), self)
 
 
         """
         Botões com funções
         """
         self.lista.activated.connect(self.item_usuario)
+        self.lista_ano.activated.connect(self.item_usuario)
 
         layout = QGridLayout()
         layout.addWidget(self.texto)
@@ -147,10 +150,14 @@ class Window(QDialog):
 
     def item_usuario(self):
         self.cidade_selected = self.lista.currentText()
+        self.ano_selected = self.lista_ano.currentText()
+        print(self.ano_selected)
         self.valor_cidade_selected = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
-            tracker.df['tipo'] == 'city'].sum()  # Realiza a filtragem de acordo com a cidade selecionada.
+            tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum()
 
-        self.mortes.setText("   Número total de Mortes: " + str(int(self.valor_cidade_selected)))
+        # Realiza a filtragem de acordo com a cidade selecionada.
+
+        self.mortes.setText("Número total de Mortes: " + str(int(self.valor_cidade_selected)))
         """Altera o valor dos números de mortes que podemos ver."""
 
     def atualizar_dados(self):
