@@ -91,11 +91,8 @@ Emanuele Cristina da Silva Diniz Campos
 
 ●   Desenvolvedores
 
-Cristiano Alberto Rosa
 
 Flávio Ferreira Antunes
-
-Gabriel Alves Miranda
 
 Gabryel Silva Monteiro
 
