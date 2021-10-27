@@ -7,7 +7,7 @@
   <a href ="#cronograma"> Cronograma </a>  • 
   <a href ="#tecnologias-utilizadas"> Tecnologias </a>  •
   <a href ="#equipe"> Equipe </a>   •
-  <a href ="#backlog-do-produto"> Backlog </a>  
+  <a href ="#backlog-total"> Backlog </a>  
  
 </p>
 
@@ -78,34 +78,42 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
 
 ##  ⚙TECNOLOGIAS UTILIZADAS
 <div>
-<img src="https://user-images.githubusercontent.com/88864112/137003368-98336ec4-33c0-41ee-94f3-8e7e2df238eb.jpg" width="450px" />
+<img src="https://user-images.githubusercontent.com/88864112/133908112-6a9ee071-bc29-4e40-8863-7c5f65caa619.jpg" width="400px" />
 <div>
 
 <br>
  
  ## 👥EQUIPE 
  
-|Nome|Função|GitHub|
-| -------- |-------- |-------- |
-|**Emanuele Campos**|Scrum Master|[@GitHub](https://github.com/ecampos14)|
-|**Flavio Antunes**|Desenvolvedor|[@GitHub]()|
-|**Gabryel Monteiro**|Desenvolvedor|[@GitHub](https://github.com/GabryelSM)|
-|**Kelly Terra**|Desenvolvedor|[@GitHub](https://github.com/Kellyterra)|
-|**Matheus Lourenço**|Desenvolvedor|[@GitHub](https://github.com/MatheusLourenco99)|
-|**Renan Pereira**|Desenvolvedor|[@GitHub](https://github.com/RenanRhoads)|
-|**Wesley Silva**|Desenvolvedor|[@GitHub]()|
+●   Master
 
+Emanuele Cristina da Silva Diniz Campos
+
+●   Desenvolvedores
+
+
+Flávio Ferreira Antunes
+
+Gabryel Silva Monteiro
+
+Kelly Carolina Morais Terra
+
+Matheus Aparecido Ramos Lourenço
+
+Renan Moreira Pereira
+
+Wesley Ferreira da Silva
   
 <br>
  
- ##  📝BACKLOG DO PRODUTO 
+ ##  📝BACKLOG TOTAL
   
- <h1 align="left"> <img src = "https://user-images.githubusercontent.com/88864112/137827661-f72d2c69-ac75-452a-b2d7-5cd1d7c4891a.jpg" height="800" /></h1>
+ <h1 align="left"> <img src = "https://user-images.githubusercontent.com/88864112/133947259-852ee6de-9a47-46c4-9824-351035a4b0e2.jpg" height="650" /></h1>
 
 <br>
  
  <div align="center">
-<img src="https://user-images.githubusercontent.com/88864112/133908665-89221a54-c877-430c-a592-74e55414ef0d.jpg"  height="60" /></h1>
+<img src="https://user-images.githubusercontent.com/88864112/133908665-89221a54-c877-430c-a592-74e55414ef0d.jpg"  height="90" /></h1>
 <div>
  
  <div align="center"> API 02-2021 - Fatec São José dos Campos

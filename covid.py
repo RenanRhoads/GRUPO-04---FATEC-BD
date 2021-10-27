@@ -83,6 +83,5 @@ class tracker:
     sns.set_color_codes("pastel")
     sns.barplot(x="mortes", y="cidade", data=df,
                 label="Total", color="b", estimator=sum, order=total_mortes_cidade.index)
-    plt.show()
 
 
