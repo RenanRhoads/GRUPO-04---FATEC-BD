@@ -98,9 +98,10 @@ class Window(QDialog):
         self.lista_ano.setEditable(True)
 
         self.cidade = self.lista.currentText()
+        self.ano = self.lista_ano.currentText()
 
         self.valor_cidade = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[
-            tracker.df['tipo'] == 'city'].sum()
+            tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == self.ano].sum()
 
         """Filtro se altera com base na cidade que o usuário seleciona"""
         self.valor_dia = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[

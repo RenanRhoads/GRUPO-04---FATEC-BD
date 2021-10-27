@@ -99,4 +99,3 @@ class tracker:
     sns.lineplot(x="mes_nome", y="mortes", data=cidade_sel,
                 label="Total", color="b", estimator=sum)
 
-    plt.show()
