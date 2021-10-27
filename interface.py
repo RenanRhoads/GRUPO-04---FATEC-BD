@@ -16,6 +16,7 @@ import threading
 import seaborn as sns
 import tkinter as tk
 
+#código simples para verificar o tamanho da tela do usuário.
 root = tk.Tk()
 
 _x = root.winfo_screenwidth()
