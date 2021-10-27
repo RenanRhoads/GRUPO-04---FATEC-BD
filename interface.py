@@ -5,7 +5,6 @@ from matplotlib import pyplot as plt
 from covid import tracker
 from PyQt5.QtWidgets import *
 from datetime import date, timedelta
-from css import css
 import os
 import requests
 import shutil
@@ -15,6 +14,15 @@ import sys
 import random
 import threading
 import seaborn as sns
+import tkinter as tk
+
+root = tk.Tk()
+
+_x = root.winfo_screenwidth()
+_y = root.winfo_screenheight()
+
+print(_x)
+print(_y)
 
 
 class Updating(QRunnable):
@@ -49,6 +57,7 @@ class Window(QDialog):
     def __init__(self, parent=None):
         super(Window, self).__init__(parent)
 
+        self.setFixedSize(_x, _y)
         self.figure = plt.figure()
         # transforma o gráfico em uma figure.
         self.canvas = FigureCanvas(self.figure)
@@ -115,7 +124,6 @@ class Window(QDialog):
         self.mortes = QLabel("Número total de Mortes: " + str(self.valor_cidade), self)
         self.mortes_dia = QLabel("Novas mortes: " + str(self.valor_dia), self)
 
-
         """
         Botões com funções
         """
@@ -137,27 +145,18 @@ class Window(QDialog):
         layout.addWidget(self.mortes, 4, 1)
         self.setLayout(layout)
 
-    def plot(self):
-        """ gera um gráfico aleatório só para testes """
-        data = [random.random() for i in range(10)]
-        a = [1, 2, 3]
-        b = [2, 4, 6]
-
-        self.figure.clear()
-        self.figure(figsize=(12, 6))
-        ax = self.figure.add_subplot(111)
-        ax.plot(a, b)
-
-        self.canvas.draw()
-
     def plot_2(self):
+
+        # gera o na tela o gráfico de top 10 cidades com mais mortes.
 
         sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
         ax = self.figure.add_subplot(111)
+        sns.plotting_context(font_scale=0.2)
         sns.set_color_codes("pastel")
         sns.barplot(x="mortes", y="cidade", data=tracker.df,
                     label="Total", color="b", estimator=sum, order=tracker.total_mortes_cidade.index)
         ax.plot()
+
         self.canvas.draw()
 
     def item_usuario(self):
