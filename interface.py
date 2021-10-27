@@ -73,12 +73,10 @@ class Window(QDialog):
         self.atualizarButton.setText("Atualizar dados.")
 
         self.grafButton = QPushButton(self)
-        # self.grafButton.clicked.connect(self.showGraf)
+        self.grafButton.clicked.connect(self.showGraf)
         self.grafButton.setText("Top 10 cidades")
 
         self.lista_header = QLabel(self.select_texto, self)
-        self.lista_header.setGeometry(800, 5, 175, 25)
-        self.lista_header.setStyleSheet(css.blueish_text)
 
         self.lista = QComboBox(self)
         self.i = 0
@@ -88,6 +86,16 @@ class Window(QDialog):
             self.lista.addItem(tracker.lista_cidades[self.i])
             self.i += 1
         self.lista.setEditable(True)
+
+        self.lista_ano = QComboBox(self)
+        self.r = 0
+        self.s = len(tracker.lista_ano)
+
+        while self.r < self.s:
+            self.lista_ano.addItem(tracker.lista_ano[self.r])
+            self.r += 1
+
+        self.lista_ano.setEditable(True)
 
         self.cidade = self.lista.currentText()
 
@@ -109,7 +117,6 @@ class Window(QDialog):
         """
         self.lista.activated.connect(self.item_usuario)
 
-        # set the layout
         layout = QGridLayout()
         layout.addWidget(self.texto)
         layout.addWidget(self.toolbar)
@@ -118,13 +125,15 @@ class Window(QDialog):
         layout.addWidget(self.atualizarButton)
         layout.addWidget(self.grafButton)
         layout.addWidget(self.data_1)
+        layout.addWidget(self.lista_header, 0, 1)
         layout.addWidget(self.lista, 1, 1)
-        layout.addWidget(self.mortes, 4, 1)
+        layout.addWidget(self.lista_ano, 1, 2)
         layout.addWidget(self.mortes_dia, 3, 1)
+        layout.addWidget(self.mortes, 4, 1)
         self.setLayout(layout)
 
     def plot(self):
-        ''' gera um gráfico aleatório só para testes '''
+        """ gera um gráfico aleatório só para testes """
         data = [random.random() for i in range(10)]
 
         self.figure.clear()
@@ -137,7 +146,6 @@ class Window(QDialog):
 
     def item_usuario(self):
         self.cidade_selected = self.lista.currentText()
-
         self.valor_cidade_selected = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
             tracker.df['tipo'] == 'city'].sum()  # Realiza a filtragem de acordo com a cidade selecionada.
 

@@ -29,12 +29,12 @@ class tracker:
     df = pd.DataFrame(data=file,
                       columns=['city', 'date', 'state', 'last_available_deaths', 'place_type',
                                'new_deaths',
-                               'new_confirmed'])  # transforma o arquivo csv em um dataframe e seleciona as colunas
+                               'ast_available_confirmed'])  # transforma o arquivo csv em um dataframe e seleciona as colunas
 
     df = df.rename(
         columns={"city": "cidade", 'state': 'estado',
                  'last_available_deaths': 'mortes confirmadas', 'place_type': 'tipo',
-                 'new_deaths': 'mortes', 'date': 'data', 'new_confirmed': 'novos casos'})
+                 'new_deaths': 'mortes', 'date': 'data', 'ast_available_confirmed': 'novos casos'})
     """Renomeia as colunas"""
 
     df = df.loc[df['estado'] == 'SP'].loc[
@@ -45,11 +45,11 @@ class tracker:
     """altera os valores de NaN para valor em branco."""
 
     df = df.drop_duplicates()  # retira valores duplicados.
-    df['data'] = pd.to_datetime(df['data'])     # cria uma coluna de data
-    df['ano'] = pd.DatetimeIndex(df['data']).year   # cria uma coluna de ano
+    df['data'] = pd.to_datetime(df['data'])  # cria uma coluna de data
+    df['ano'] = pd.DatetimeIndex(df['data']).year  # cria uma coluna de ano
     df['mes'] = pd.DatetimeIndex(df['data']).month  # cria uma coluna de mes
     df['mes_nome'] = df['data'].dt.strftime('%B')  # transforma o numero da coluna 'mes' para nome do mes
-    df['mes/ano'] = df['mes_nome'].astype(str) + "-" + df['ano'].astype(str)    # concatena mes e ano
+    df['mes/ano'] = df['mes_nome'].astype(str) + "-" + df['ano'].astype(str)  # concatena mes e ano
 
     '''Variáveis'''
 
@@ -65,23 +65,38 @@ class tracker:
 
     lista_cidades = df['cidade'].loc[df['estado'] == 'SP'].loc[df['cidade'] != ''].drop_duplicates().sort_values() \
         .tolist()
+
+    lista_ano = ['2020', '2021']
+
     """Transforma os valores em lista, e coloca em ordem alfabética."""
 
-    cidade_sel = df[df.cidade == 'São Paulo']
-
     total_mortes_cidade = df[['cidade', 'mortes']].groupby('cidade').sum().sort_values(by='mortes', ascending=False) \
-        .iloc[:10] # Ordena as cidades de forma decrescente e mostra as 10 cidades com maior numero de morte
-    #print(total_mortes_cidade)
+        .iloc[:10]
+    # Ordena as cidades de forma decrescente e mostra as 10 cidades com maior numero de morte
+    # print(total_mortes_cidade)
 
+    ####################################################################################################################
 
-########################################################################################################################
+    print(lista_ano)
+    """Solicita Input de cidade para o usuário."""
+    user_select_city = input("Digite o nome da cidade: \n")
+    city_sel = user_select_city
+    user_select_year = int(input('Digite o Ano desejado: '))
+    ano_sel = user_select_year
+    cidade_sel = df[df.cidade == str(city_sel)]
+
+    """Gráfico para as 10 cidades com mais mortes"""
     sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
-
     f, ax = plt.subplots(figsize=(6, 15))
-
-    # gráfico que mostra as 10 maiores cidades por quantidade de mortos
     sns.set_color_codes("pastel")
     sns.barplot(x="mortes", y="cidade", data=df,
                 label="Total", color="b", estimator=sum, order=total_mortes_cidade.index)
 
+    """Gráfico por mês da cidade selecionada"""
+    sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
+    f2, ax2 = plt.subplots(figsize=(6, 15))
+    sns.set_color_codes("pastel")
+    sns.lineplot(x="mes_nome", y="mortes", data=cidade_sel,
+                label="Total", color="b", estimator=sum)
 
+    plt.show()
