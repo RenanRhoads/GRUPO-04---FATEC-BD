@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 from covid import tracker
 from PyQt5.QtWidgets import *
 from datetime import date, timedelta
-import os
+from matplotlib.figure import Figure
 import requests
 import shutil
 import gzip
@@ -16,7 +16,7 @@ import threading
 import seaborn as sns
 import tkinter as tk
 
-#código simples para verificar o tamanho da tela do usuário.
+# código simples para verificar o tamanho da tela do usuário.
 root = tk.Tk()
 
 _x = root.winfo_screenwidth()
@@ -66,8 +66,8 @@ class Window(QDialog):
         self.toolbar = NavigationToolbar(self.canvas, self)
 
         # botão que ativa a função plot, apenas para testes
-        self.button = QPushButton('Plot')
-        self.button.clicked.connect(self.plot_2)
+        self.button = QPushButton('Gráfico por Mês')
+        self.button.clicked.connect(self.item_usuario)
 
         self.hello = "Seja bem-vindo ao Covid Tracker!"
         self.select_texto = "Digite o nome de sua cidade:"
@@ -79,11 +79,13 @@ class Window(QDialog):
         self.data_string = self.data_less_1.strftime("%y-%m-%d")
 
         self.data_1 = QLabel(self.data, self)
-        # self.data_1.move(950, 520)
 
         self.atualizarButton = QPushButton(self)
-        # self.atualizarButton.clicked.connect(self.atualizar_dados)
+        self.atualizarButton.clicked.connect(self.atualizar_dados)
         self.atualizarButton.setText("Atualizar dados.")
+
+        self.chartUpdate = QPushButton(self)
+        self.chartUpdate.setText("Gerar gráfico atualizado.")
 
         self.grafButton = QPushButton(self)
         self.grafButton.clicked.connect(self.showGraf)
@@ -137,6 +139,7 @@ class Window(QDialog):
         layout.addWidget(self.canvas)
         layout.addWidget(self.button)
         layout.addWidget(self.atualizarButton)
+        layout.addWidget(self.chartUpdate)
         layout.addWidget(self.grafButton)
         layout.addWidget(self.data_1)
         layout.addWidget(self.lista_header, 0, 1)
@@ -146,22 +149,9 @@ class Window(QDialog):
         layout.addWidget(self.mortes, 4, 1)
         self.setLayout(layout)
 
-    def plot_2(self):
-
-        # gera o na tela o gráfico de top 10 cidades com mais mortes.
-
-        sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
-        ax = self.figure.add_subplot(111)
-        sns.plotting_context(font_scale=0.2)
-        sns.set_color_codes("pastel")
-        sns.barplot(x="mortes", y="cidade", data=tracker.df,
-                    label="Total", color="b", estimator=sum, order=tracker.total_mortes_cidade.index)
-        ax.plot()
-
-        self.canvas.draw()
-
     def item_usuario(self):
         self.cidade_selected = self.lista.currentText()
+        print(self.cidade_selected)
         self.ano_selected = self.lista_ano.currentText()
         print(self.ano_selected)
         self.valor_cidade_selected = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
@@ -172,6 +162,46 @@ class Window(QDialog):
         self.mortes.setText("Número total de Mortes: " + str(int(self.valor_cidade_selected)))
         """Altera o valor dos números de mortes que podemos ver."""
 
+        plt.clf()  # vai limpar o gráfico anterior para que não gere um em cima do outro.
+
+        user_select_city = self.cidade_selected
+        city_sel = user_select_city
+        user_select_year = self.ano_selected
+        ano_sel = user_select_year
+        cidade_sel = tracker.df[tracker.df.cidade == city_sel]
+
+        # Gráfico por mês da cidade selecionada
+        sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
+        ax = self.figure.add_subplot(111)
+        sns.set_color_codes("pastel")
+        sns.lineplot(x="mes_nome", y="mortes", data=cidade_sel,
+                     label="Total", color="b", estimator=sum)
+
+        ax.plot()
+
+        self.canvas.draw()
+
+    def plot_2(self):
+
+        plt.clf()  # vai limpar o gráfico anterior para que não gere um em cima do outro.
+
+        user_select_city = self.cidade_selected
+        city_sel = user_select_city
+        user_select_year = self.self.ano_selected
+        ano_sel = user_select_year
+        cidade_sel = tracker.df[tracker.df.cidade == city_sel]
+
+        # Gráfico por mês da cidade selecionada
+        sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
+        ax = self.figure.add_subplot(111)
+        sns.set_color_codes("pastel")
+        sns.lineplot(x="mes_nome", y="mortes", data=cidade_sel,
+                     label="Total", color="b", estimator=sum)
+
+        ax.plot()
+
+        self.canvas.draw()
+
     def atualizar_dados(self):
         formato = "%(asctime)s: %(message)s"
         logging.basicConfig(format=formato, level=logging.INFO, datefmt="%H:%M:%S")
@@ -180,7 +210,18 @@ class Window(QDialog):
         x.start()
 
     def showGraf(self):
-        plt.show()
+
+        plt.clf()
+
+        sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
+        ax = self.figure.add_subplot(111)
+        ax.clear()
+        sns.set_color_codes("pastel")
+        sns.barplot(x="mortes", y="cidade", data=tracker.df,
+                    label="Total", color="b", estimator=sum, order=tracker.total_mortes_cidade.index)
+        ax.plot()
+
+        self.canvas.draw()
 
 
 if __name__ == '__main__':
