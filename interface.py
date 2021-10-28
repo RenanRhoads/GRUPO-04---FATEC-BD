@@ -1,3 +1,4 @@
+import os
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from PyQt5.QtCore import QRunnable
@@ -167,27 +168,6 @@ class Window(QDialog):
         user_select_city = self.cidade_selected
         city_sel = user_select_city
         user_select_year = self.ano_selected
-        ano_sel = user_select_year
-        cidade_sel = tracker.df[tracker.df.cidade == city_sel]
-
-        # Gráfico por mês da cidade selecionada
-        sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
-        ax = self.figure.add_subplot(111)
-        sns.set_color_codes("pastel")
-        sns.lineplot(x="mes_nome", y="mortes", data=cidade_sel,
-                     label="Total", color="b", estimator=sum)
-
-        ax.plot()
-
-        self.canvas.draw()
-
-    def plot_2(self):
-
-        plt.clf()  # vai limpar o gráfico anterior para que não gere um em cima do outro.
-
-        user_select_city = self.cidade_selected
-        city_sel = user_select_city
-        user_select_year = self.self.ano_selected
         ano_sel = user_select_year
         cidade_sel = tracker.df[tracker.df.cidade == city_sel]
 
