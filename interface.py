@@ -178,7 +178,11 @@ class Window(QDialog):
         ax = self.figure.add_subplot(111)
         sns.set_color_codes("pastel")
         sns.barplot(x="mes_nome", y="mortes", data=cidade_sel,
-                    label="Total", color="b", ci=None, estimator=sum)
+                    color="b", ci=None, estimator=sum)
+        # Configurando título e rótulos dos eixos.
+        plt.title('Evolução de morte por mês', fontsize=14)
+        plt.xlabel('Mês', fontsize=12)
+        plt.ylabel('Mortes', fontsize=12)
         for container in ax.containers:
             ax.bar_label(container)
         ax.plot()
@@ -202,6 +206,11 @@ class Window(QDialog):
         sns.set_color_codes("pastel")
         sns.barplot(x="mortes", y="cidade", data=tracker.df,
                     label="Total", color="b", estimator=sum, ci=None, order=tracker.total_mortes_cidade.index)
+
+        # Configurando título e rótulos dos eixos.
+        plt.title('Total de mortes', fontsize=14)
+        plt.xlabel('Mortes', fontsize=12)
+        plt.ylabel('Cidades', fontsize=12)
         for container in ax.containers:
             ax.bar_label(container)
         ax.plot()
@@ -213,6 +222,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     main = Window()
+    main.setWindowTitle('CovidTracker')
     main.show()
 
     sys.exit(app.exec_())

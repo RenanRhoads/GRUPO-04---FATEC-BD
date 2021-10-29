@@ -66,8 +66,6 @@ class tracker:
     lista_cidades = df['cidade'].loc[df['estado'] == 'SP'].loc[df['cidade'] != ''].drop_duplicates().sort_values() \
         .tolist()
 
-    lista_meses = df['mes_nome'].drop_duplicates().tolist()
-
     lista_ano = ['2020', '2021']
 
     """Transforma os valores em lista, e coloca em ordem alfabética."""
@@ -75,6 +73,6 @@ class tracker:
     total_mortes_cidade = df[['cidade', 'mortes']].groupby('cidade').sum().sort_values(by='mortes', ascending=False) \
         .iloc[:10]
     # Ordena as cidades de forma decrescente e mostra as 10 cidades com maior numero de morte
+    # print(total_mortes_cidade)
 
     ####################################################################################################################
-
