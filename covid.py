@@ -73,7 +73,7 @@ class tracker:
     """Transforma os valores em lista, e coloca em ordem alfabética."""
 
     total_mortes_cidade = df[['cidade', 'mortes']].groupby('cidade').sum().sort_values(by='mortes', ascending=False) \
-                              .iloc[:10]
+        .iloc[:10]
     # Ordena as cidades de forma decrescente e mostra as 10 cidades com maior numero de morte
 
     ####################################################################################################################
