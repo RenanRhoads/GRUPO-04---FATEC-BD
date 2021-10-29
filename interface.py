@@ -54,6 +54,7 @@ class Updating(QRunnable):
 
 
 class Window(QDialog):
+    ano_selected: str
     cidade_selected: str
 
     def __init__(self, parent=None):
@@ -86,7 +87,7 @@ class Window(QDialog):
         self.atualizarButton.setText("Atualizar dados.")
 
         self.chartUpdate = QPushButton(self)
-        self.chartUpdate.setText("Gerar gráfico atualizado.")
+        self.chartUpdate.setText("Gerar gráfico por dia (apenas mês atual).")
 
         self.grafButton = QPushButton(self)
         self.grafButton.clicked.connect(self.showGraf)
@@ -151,6 +152,7 @@ class Window(QDialog):
         self.setLayout(layout)
 
     def item_usuario(self):
+        
         self.cidade_selected = self.lista.currentText()
         print(self.cidade_selected)
         self.ano_selected = self.lista_ano.currentText()
@@ -169,7 +171,7 @@ class Window(QDialog):
         city_sel = user_select_city
         user_select_year = self.ano_selected
         ano_sel = user_select_year
-        cidade_sel = tracker.df[tracker.df.cidade == str(city_sel)]  # .loc[tracker.df.ano == ano_sel]
+        cidade_sel = tracker.df[tracker.df.cidade == str(city_sel)].loc[tracker.df.ano == int(ano_sel)]
 
         # Gráfico por mês da cidade selecionada
         sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
