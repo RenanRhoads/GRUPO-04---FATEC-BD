@@ -78,7 +78,7 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
 
 ##  ⚙TECNOLOGIAS UTILIZADAS
 <div>
-<img src="https://user-images.githubusercontent.com/88864112/137003368-98336ec4-33c0-41ee-94f3-8e7e2df238eb.jpg" width="600px" />
+<img src="https://user-images.githubusercontent.com/88864112/137003368-98336ec4-33c0-41ee-94f3-8e7e2df238eb.jpg" width="500px" />
 <div>
 
 <br>
