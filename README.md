@@ -85,30 +85,20 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
  
  ## 👥EQUIPE 
  
-●   Master
-
-Emanuele Cristina da Silva Diniz Campos
-
-●   Desenvolvedores
-
-
-Flávio Ferreira Antunes
-
-Gabryel Silva Monteiro
-
-Kelly Carolina Morais Terra
-
-Matheus Aparecido Ramos Lourenço
-
-Renan Moreira Pereira
-
-Wesley Ferreira da Silva
-  
+|Nome|Função|GitHub|
+| -------- |-------- |-------- |
+|**Emanuele Diniz Campos**|Scrum Master|[@GitHub](https://github.com/ecampos14)|
+|**Flávio Ferreira Antunes**|Desenvolvedor |[@GitHub](https:)|
+|**Gabryel Silva Monteiro**|Desenvolvedor |[@GitHub](https://github.com/GabryelSM)|
+|**Kelly  Morais Terra**|Desenvolvedor |[@GitHub](https://github.com/Kellyterra)|
+|**Matheus  Ramos Lourenço**|Desenvolvedor |[@GitHub](https://github.com/MatheusLourenco99)|
+|**Renan Moreira Pereira**|Desenvolvedor |[@GitHub](https://github.com/RenanRhoads)|
+|**Wesley Ferreira da Silva**|Desenvolvedor |[@GitHub](https://github.com/weeesferreira)|
 <br>
  
  ##  📝BACKLOG TOTAL
   
- <h1 align="left"> <img src = "https://user-images.githubusercontent.com/88864112/140229652-345c5dab-afb5-4575-94d6-03fb76c2f139.jpg" height="650" /></h1>
+ <h1 align="left"> <img src = "https://user-images.githubusercontent.com/88864112/140229652-345c5dab-afb5-4575-94d6-03fb76c2f139.jpg" height="800" /></h1>
 
 <br>
  
