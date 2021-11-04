@@ -29,12 +29,12 @@ class tracker:
     df = pd.DataFrame(data=file,
                       columns=['city', 'date', 'state', 'last_available_deaths', 'place_type',
                                'new_deaths',
-                               'ast_available_confirmed'])  # transforma o arquivo csv em um dataframe e seleciona as colunas
+                               'last_available_confirmed', 'new_confirmed'])  # transforma o arquivo csv em um dataframe e seleciona as colunas
 
     df = df.rename(
         columns={"city": "cidade", 'state': 'estado',
                  'last_available_deaths': 'mortes confirmadas', 'place_type': 'tipo',
-                 'new_deaths': 'mortes', 'date': 'data', 'ast_available_confirmed': 'novos casos'})
+                 'new_deaths': 'mortes', 'date': 'data', 'last_available_confirmed': 'novos casos', 'new_confirmed': 'confirmados'})
     """Renomeia as colunas"""
 
     df = df.loc[df['estado'] == 'SP'].loc[
@@ -65,6 +65,8 @@ class tracker:
 
     lista_cidades = df['cidade'].loc[df['estado'] == 'SP'].loc[df['cidade'] != ''].drop_duplicates().sort_values() \
         .tolist()
+
+    confirmados_sp = df['confirmados'].loc[df['estado'] == 'SP']
 
     lista_ano = ['2020', '2021']
 
