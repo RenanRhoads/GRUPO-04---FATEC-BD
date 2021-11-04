@@ -1,10 +1,9 @@
 import locale
 import pandas as pd
 import os
-import seaborn as sns
-import matplotlib.pyplot as plt
 from datetime import date, timedelta
 
+# Responsável - Matheus Lourenço
 # 21/09/2021 - Matheus Lourenço - Adicionado gráfico de top 10 cidades mortes por Covid.
 
 locale.setlocale(locale.LC_ALL, 'pt_BR')  # Define a localidade de como o programa deve ser utilizado.
@@ -29,17 +28,17 @@ class tracker:
     df = pd.DataFrame(data=file,
                       columns=['city', 'date', 'state', 'last_available_deaths', 'place_type',
                                'new_deaths',
-                               'ast_available_confirmed'])  # transforma o arquivo csv em um dataframe e seleciona as colunas
+                               'last_available_confirmed'])  # transforma o arquivo csv em um dataframe e seleciona as colunas
 
     df = df.rename(
         columns={"city": "cidade", 'state': 'estado',
                  'last_available_deaths': 'mortes confirmadas', 'place_type': 'tipo',
-                 'new_deaths': 'mortes', 'date': 'data', 'ast_available_confirmed': 'novos casos'})
+                 'new_deaths': 'mortes', 'date': 'data', 'last_available_confirmed': 'novos casos'})
     """Renomeia as colunas"""
 
     df = df.loc[df['estado'] == 'SP'].loc[
         df['tipo'] == 'city']
-    """Filtra apenas o estado de SP na coluna 'estado', e apenas o cálculo por tipo "state"""
+    """Filtra apenas o estado de SP na coluna 'estado', e apenas o cálculo por tipo "state"""  # - Renan Moreira
 
     df = df.fillna(value="")
     """altera os valores de NaN para valor em branco."""

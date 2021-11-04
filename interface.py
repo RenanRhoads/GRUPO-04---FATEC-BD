@@ -1,21 +1,23 @@
 import os
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-from PyQt5.QtCore import QRunnable
+from PyQt5.QtCore import QRunnable, Qt
 from matplotlib import pyplot as plt
 from covid import tracker
 from PyQt5.QtWidgets import *
-from datetime import date, timedelta
-from matplotlib.figure import Figure
+from datetime import timedelta
+from datetime import date
 import requests
 import shutil
 import gzip
 import logging
 import sys
-import random
 import threading
 import seaborn as sns
+from PyQt5.QtGui import QImage, QPixmap
 import tkinter as tk
+
+# Responsável - Renan
 
 # código simples para verificar o tamanho da tela do usuário.
 root = tk.Tk()
@@ -23,8 +25,33 @@ root = tk.Tk()
 _x = root.winfo_screenwidth()
 _y = root.winfo_screenheight()
 
-print(_x)
-print(_y)
+"""Abre uma nova janela, contento os créditos e agradecimentos do programa."""
+
+
+class HelpWindow(QDialog):
+    def __init__(self, parent=None):
+        super(HelpWindow, self).__init__(parent)
+
+        url_git = 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+
+        self.setFixedSize(400, 200)
+
+        self.gitmage = QImage()
+        self.gitmage.loadFromData(requests.get(url_git).content)
+
+        self.image_git_label = QLabel(self)
+        self.image_git_label.setPixmap(QPixmap(self.gitmage))
+        self.image_git_label.show()
+
+        self.texto_help = QLabel(self)
+        self.texto_help.setOpenExternalLinks(True)
+        self.texto_help.setText(
+            '''<a href='https://github.com/RenanRhoads/GRUPO-04---FATEC-BD'>Covid Tracker - Github</a>''')
+
+        l = QGridLayout()
+        l.addWidget(self.texto_help, 1, 2)
+        l.addWidget(self.image_git_label, 1, 1)
+        self.setLayout(l)
 
 
 class Updating(QRunnable):
@@ -36,9 +63,10 @@ class Updating(QRunnable):
     def atualizar(self):
         logging.info(f"Trabalhando no processo")
         path = os.path.expanduser('~\Documents\caso_full.csv.gz')
-        output = os.path.expanduser('~\Documents\caso_full.csv')
+        output = os.path.expanduser("~\Documents\caso_full.csv")
         print("Iniciando o download do arquivo.")
-        url = 'https://data.brasil.io/dataset/covid19/caso_full.csv.gz'  # link para o arquivo fornecido pelo site Brasil.IO
+        url = 'https://data.brasil.io/dataset/covid19/caso_full.csv.gz'  # link para o arquivo fornecido pelo site
+        # Brasil.IO
         r = requests.get(url, allow_redirects=True)
 
         with open(path, 'wb') as f:
@@ -54,6 +82,7 @@ class Updating(QRunnable):
 
 
 class Window(QDialog):
+    valor_cidade_selected: object
     ano_selected: str
     cidade_selected: str
 
@@ -126,19 +155,23 @@ class Window(QDialog):
 
         """Calcula a data atual - 1 para saber a quantidade de novas mortes """
 
-        self.valor_mortes_sp = tracker.df['mortes'].sum()
+        self.valor_mortes_sp = tracker.df['mortes'].sum()  # Wesley Ferreira - Adicionado total de mortes no Estado SP
 
         """ Total de óbitos em SP"""
 
         self.mortes = QLabel("Número total de Mortes: " + str(self.valor_cidade), self)
         self.mortes_dia = QLabel("Novas mortes: " + str(self.valor_dia), self)
-        self.mortes_sp = QLabel("Total de óbitos em SP: " + str(self.valor_mortes_sp), self)
+        self.mortes_sp = QLabel("Total de óbitos no estado de São Paulo: " + str(self.valor_mortes_sp), self)
 
         """
         Botões com funções
         """
         self.lista.activated.connect(self.item_usuario)
         self.lista_ano.activated.connect(self.item_usuario)
+
+        self.HelpButton = QPushButton(self)
+        self.HelpButton.setText("Créditos")
+        self.HelpButton.clicked.connect(self.extrawindow)
 
         layout = QGridLayout()
         layout.addWidget(self.texto)
@@ -155,10 +188,12 @@ class Window(QDialog):
         layout.addWidget(self.mortes_dia, 3, 1)
         layout.addWidget(self.mortes, 4, 1)
         layout.addWidget(self.mortes_sp, 5, 1)
+        layout.addWidget(self.HelpButton, 6, 2)
+
         self.setLayout(layout)
 
     def item_usuario(self):
-        
+
         self.cidade_selected = self.lista.currentText()
         print(self.cidade_selected)
         self.ano_selected = self.lista_ano.currentText()
@@ -196,6 +231,7 @@ class Window(QDialog):
         self.canvas.draw()
 
     def atualizar_dados(self):
+
         formato = "%(asctime)s: %(message)s"
         logging.basicConfig(format=formato, level=logging.INFO, datefmt="%H:%M:%S")
         logging.info("Main    : Inicializando a thread para atualizar o arquivo.")
@@ -223,6 +259,10 @@ class Window(QDialog):
 
         self.canvas.draw()
 
+    def extrawindow(self):
+        self.w = HelpWindow()
+        self.w.show()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
@@ -230,5 +270,4 @@ if __name__ == '__main__':
     main = Window()
     main.setWindowTitle('CovidTracker')
     main.show()
-
     sys.exit(app.exec_())
