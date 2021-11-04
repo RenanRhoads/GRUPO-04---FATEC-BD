@@ -20,8 +20,10 @@ import tkinter as tk
 # Responsável - Renan
 
 # código simples para verificar o tamanho da tela do usuário.
-root = tk.Tk()
 
+print(os.listdir('assets\icons\github.png'))
+
+root = tk.Tk()
 _x = root.winfo_screenwidth()
 _y = root.winfo_screenheight()
 
@@ -32,9 +34,9 @@ class HelpWindow(QDialog):
     def __init__(self, parent=None):
         super(HelpWindow, self).__init__(parent)
 
-        url_git = 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+        url_git = 'assets/icons/github.png'
 
-        self.setFixedSize(400, 200)
+        self.resize(400, 200)
 
         self.gitmage = QImage()
         self.gitmage.loadFromData(requests.get(url_git).content)
@@ -46,7 +48,8 @@ class HelpWindow(QDialog):
         self.texto_help = QLabel(self)
         self.texto_help.setOpenExternalLinks(True)
         self.texto_help.setText(
-            '''<a href='https://github.com/RenanRhoads/GRUPO-04---FATEC-BD'>Covid Tracker - Github</a>''')
+            '''<a href='https://github.com/RenanRhoads/GRUPO-04---FATEC-BD'>Covid Tracker - Github</a>
+            Renan Moreira''')
 
         l = QGridLayout()
         l.addWidget(self.texto_help, 1, 2)
