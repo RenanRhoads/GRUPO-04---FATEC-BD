@@ -21,8 +21,6 @@ import tkinter as tk
 
 # código simples para verificar o tamanho da tela do usuário.
 
-print(os.listdir('assets\icons\github.png'))
-
 root = tk.Tk()
 _x = root.winfo_screenwidth()
 _y = root.winfo_screenheight()
@@ -34,15 +32,16 @@ class HelpWindow(QDialog):
     def __init__(self, parent=None):
         super(HelpWindow, self).__init__(parent)
 
-        url_git = 'assets/icons/github.png'
+        local = os.path.dirname(os.path.abspath(__file__))  # Identicia o caminho atual onde o programa está rodando.
+        url_git = local + r'\assets\icons\github.png'
 
         self.resize(400, 200)
 
         self.gitmage = QImage()
-        self.gitmage.loadFromData(requests.get(url_git).content)
 
         self.image_git_label = QLabel(self)
-        self.image_git_label.setPixmap(QPixmap(self.gitmage))
+        self.github = QPixmap(url_git)
+        self.image_git_label.setPixmap(self.github)
         self.image_git_label.show()
 
         self.texto_help = QLabel(self)
