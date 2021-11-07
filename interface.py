@@ -128,16 +128,11 @@ class Window(QDialog):
 
         self.valor_mortes_sp = tracker.df['mortes'].sum()
 
-        """ Total de óbitos em São Paulo"""
-
-        self.confirmados = tracker.df['confirmados'].loc[tracker.df['estado'] == 'SP'].sum()
-
-        """ Total de casos confirmados em São Paulo"""
+        """ Total de óbitos em SP"""
 
         self.mortes = QLabel("Número total de Mortes: " + str(self.valor_cidade), self)
         self.mortes_dia = QLabel("Novas mortes: " + str(self.valor_dia), self)
-        self.mortes_sp = QLabel("Total de óbitos no estado de São Paulo: " + str(self.valor_mortes_sp), self)
-        self.confirmados_sp = QLabel("Total de casos positivos no estado de São Paulo: " + str(self.confirmados), self)
+        self.mortes_sp = QLabel("Total de óbitos em SP: " + str(self.valor_mortes_sp), self)
 
         """
         Botões com funções
@@ -160,7 +155,6 @@ class Window(QDialog):
         layout.addWidget(self.mortes_dia, 3, 1)
         layout.addWidget(self.mortes, 4, 1)
         layout.addWidget(self.mortes_sp, 5, 1)
-        layout.addWidget(self.confirmados_sp, 6, 1)
         self.setLayout(layout)
 
     def item_usuario(self):
