@@ -70,6 +70,8 @@ class tracker:
 
     lista_ano = ['2020', '2021']
 
+    lista_mes = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+
     """Transforma os valores em lista, e coloca em ordem alfabética."""
 
     total_mortes_cidade = df[['cidade', 'mortes']].groupby('cidade').sum().sort_values(by='mortes', ascending=False) \
