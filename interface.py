@@ -193,7 +193,7 @@ class Window(QDialog):
         layout.addWidget(self.mortes, 4, 1)
         layout.addWidget(self.mortes_sp, 5, 1)
         layout.addWidget(self.total_confirmados, 6, 1)
-        layout.addWidget(self.HelpButton, 7, 2)
+        layout.addWidget(self.HelpButton, 6, 2)
         self.setLayout(layout)
 
     def item_usuario(self):
