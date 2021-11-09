@@ -18,6 +18,7 @@ from PyQt5.QtGui import QImage, QPixmap
 import tkinter as tk
 
 # Responsável - Renan
+# Test final commit
 
 # código simples para verificar o tamanho da tela do usuário.
 
