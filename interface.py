@@ -6,6 +6,7 @@ from matplotlib import pyplot as plt
 from covid import tracker
 from PyQt5.QtWidgets import *
 from datetime import date, timedelta
+from PyQt5.QtGui import QImage, QPixmap
 from matplotlib.figure import Figure
 import requests
 import shutil
@@ -15,6 +16,7 @@ import sys
 import random
 import threading
 import seaborn as sns
+
 import tkinter as tk
 
 # código simples para verificar o tamanho da tela do usuário.
@@ -26,6 +28,32 @@ _y = root.winfo_screenheight()
 print(_x)
 print(_y)
 
+class HelpWindow(QDialog):
+    def __init__(self, parent=None):
+        super(HelpWindow, self).__init__(parent)
+
+        local = os.path.dirname(os.path.abspath(__file__))  # Identicia o caminho atual onde o programa está rodando.
+        url_git = local + r'\assets\icons\github.png'
+
+        self.resize(400, 200)
+
+        self.gitmage = QImage()
+
+        self.image_git_label = QLabel(self)
+        self.github = QPixmap(url_git)
+        self.image_git_label.setPixmap(self.github)
+        self.image_git_label.show()
+
+        self.texto_help = QLabel(self)
+        self.texto_help.setOpenExternalLinks(True)
+        self.texto_help.setText(
+            '''<a href='https://github.com/RenanRhoads/GRUPO-04---FATEC-BD'>Covid Tracker - Github</a>
+            Renan Moreira''')
+
+        l = QGridLayout()
+        l.addWidget(self.texto_help, 1, 2)
+        l.addWidget(self.image_git_label, 1, 1)
+        self.setLayout(l)
 
 class Updating(QRunnable):
     """Função para atualizar os dados do programa."""
@@ -145,6 +173,10 @@ class Window(QDialog):
         self.lista.activated.connect(self.item_usuario)
         self.lista_ano.activated.connect(self.item_usuario)
 
+        self.HelpButton = QPushButton(self)
+        self.HelpButton.setText("Créditos")
+        self.HelpButton.clicked.connect(self.extrawindow)
+
         layout = QGridLayout()
         layout.addWidget(self.texto)
         layout.addWidget(self.toolbar)
@@ -161,6 +193,7 @@ class Window(QDialog):
         layout.addWidget(self.mortes, 4, 1)
         layout.addWidget(self.mortes_sp, 5, 1)
         layout.addWidget(self.total_confirmados, 6, 1)
+        layout.addWidget(self.HelpButton, 7, 2)
         self.setLayout(layout)
 
     def item_usuario(self):
@@ -228,6 +261,10 @@ class Window(QDialog):
         ax.plot()
 
         self.canvas.draw()
+
+    def extrawindow(self):
+        self.w = HelpWindow()
+        self.w.show()
 
 
 if __name__ == '__main__':
