@@ -72,6 +72,15 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
    • Atualização dos dados de forma automática. 
    
    • reescrita do código para visualização gráfica.
+   
+   **[Sprint 3] - 12/11/2021 **
+   
+   * Reestilizada a inteface gráfica
+   * Funções responsívas de gráficos
+   * possibilidade de filtrar as 10 cidades com maiores quantidades de mortes.
+   * Atualização de dados diretamente pelo aplicativo.
+   * Possibilidade de filtrar o ano dos dados selecionados
+   * Informações sobre dados no canto inferior direito da tela.
 
 <br>
 
