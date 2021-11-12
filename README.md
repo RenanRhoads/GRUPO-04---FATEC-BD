@@ -73,7 +73,7 @@ O objetivo é desenvolver um protótipo podendo ser página website ou app, com 
    
    • reescrita do código para visualização gráfica.
    
-   **[Sprint 3] - 12/11/2021 **
+   **[Sprint 3] - 12/11/2021**
    
    * Reestilizada a inteface gráfica
    * Funções responsívas de gráficos
