@@ -162,10 +162,18 @@ class Window(QDialog):
 
         """Total de casos confirmados no estado de São Paulo"""
 
-        self.mortes = QLabel("Número total de Mortes: " + str(self.valor_cidade), self)
+        self.mortes = QLabel("Número total de mortes: " + str(self.valor_cidade), self)
         self.mortes_dia = QLabel("Novas mortes: " + str(self.valor_dia), self)
         self.mortes_sp = QLabel("Total de óbitos no estado de São Paulo: " + str(self.valor_mortes_sp), self)
         self.total_confirmados = QLabel("Total de casos confirmados no estado de São Paulo: " + str(self.valor_total_confirmados), self)
+
+        """Taxa de letalidade"""
+        valor_letalidade = ((tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[
+            tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano)].sum()) * 100) / \
+                           (tracker.df['confirmados'].loc[tracker.df['cidade'] == self.cidade].loc[tracker.df['tipo'] ==
+                           'city'].loc[tracker.df['ano'] == int(self.ano)].sum())
+        self.valor_taxa_letalidade = (f'{valor_letalidade:.2f}')
+        self.letalidade = QLabel(f"Letalidade: {str(self.valor_taxa_letalidade)}%", self)
 
         """
         Botões com funções
@@ -191,6 +199,7 @@ class Window(QDialog):
         layout.addWidget(self.lista_ano, 1, 2)
         layout.addWidget(self.mortes_dia, 3, 1)
         layout.addWidget(self.mortes, 4, 1)
+        layout.addWidget(self.letalidade, 4, 2)
         layout.addWidget(self.mortes_sp, 5, 1)
         layout.addWidget(self.total_confirmados, 6, 1)
         layout.addWidget(self.HelpButton, 6, 2)
@@ -205,7 +214,14 @@ class Window(QDialog):
         self.valor_cidade_selected = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
             tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum()
 
+        valor_letalidade = ((tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
+            tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum()) * 100) / \
+            (tracker.df['confirmados'].loc[tracker.df['cidade'] == self.cidade_selected].loc[tracker.df['tipo'] ==
+            'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum())
+        self.valor_taxa_letalidade = (f'{valor_letalidade:.2f}')
+
         # Realiza a filtragem de acordo com a cidade selecionada.
+        self.letalidade.setText(f"Letalidade: {str(self.valor_taxa_letalidade)}%")
 
         self.mortes.setText("Número total de Mortes: " + str(int(self.valor_cidade_selected)))
         """Altera o valor dos números de mortes que podemos ver."""

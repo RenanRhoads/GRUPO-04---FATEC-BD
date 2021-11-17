@@ -29,27 +29,30 @@ class tracker:
     df = pd.DataFrame(data=file,
                       columns=['city', 'date', 'state', 'last_available_deaths', 'place_type',
                                'new_deaths', 'new_confirmed',
-                               'ast_available_confirmed'])  # transforma o arquivo csv em um dataframe e seleciona as colunas
+                               'last_available_confirmed'])  # transforma o arquivo csv em um dataframe e seleciona as colunas
 
     df = df.rename(
         columns={"city": "cidade", 'state': 'estado',
                  'last_available_deaths': 'mortes confirmadas', 'place_type': 'tipo',
-                 'new_deaths': 'mortes', 'new_confirmed': 'confirmados', 'date': 'data', 'ast_available_confirmed': 'novos casos'})
+                 'new_deaths': 'mortes', 'new_confirmed': 'confirmados', 'date': 'data',
+                 'last_available_confirmed': 'novos casos'})
     """Renomeia as colunas"""
 
     df = df.loc[df['estado'] == 'SP'].loc[
         df['tipo'] == 'city']
     """Filtra apenas o estado de SP na coluna 'estado', e apenas o cálculo por tipo "state"""
 
-    df = df.fillna(value="")
     """altera os valores de NaN para valor em branco."""
+    df = df.fillna(value="")
 
     df = df.drop_duplicates()  # retira valores duplicados.
     df['data'] = pd.to_datetime(df['data'])  # cria uma coluna de data
     df['ano'] = pd.DatetimeIndex(df['data']).year  # cria uma coluna de ano
     df['mes'] = pd.DatetimeIndex(df['data']).month  # cria uma coluna de mes
     df['mes_nome'] = df['data'].dt.strftime('%B')  # transforma o numero da coluna 'mes' para nome do mes
+    df['mes_nome'].str.title()
     df['mes/ano'] = df['mes_nome'].astype(str) + "-" + df['ano'].astype(str)  # concatena mes e ano
+    print(df['mes/ano'])
 
     '''Variáveis'''
 
