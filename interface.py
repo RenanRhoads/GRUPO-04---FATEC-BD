@@ -1,4 +1,5 @@
 import os
+from PyQt5 import QtGui, QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from PyQt5.QtCore import QRunnable
@@ -6,8 +7,9 @@ from matplotlib import pyplot as plt
 from covid import tracker
 from PyQt5.QtWidgets import *
 from datetime import date, timedelta
-from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtGui import QImage, QPixmap, QCursor
 from matplotlib.figure import Figure
+from css import css
 import requests
 import shutil
 import gzip
@@ -22,11 +24,12 @@ import tkinter as tk
 # código simples para verificar o tamanho da tela do usuário.
 root = tk.Tk()
 
-_x = root.winfo_screenwidth()
-_y = root.winfo_screenheight()
+_x = 1024  # root.winfo_screenwidth()
+_y = 768  # root.winfo_screenheight()
 
 print(_x)
 print(_y)
+
 
 class HelpWindow(QDialog):
     def __init__(self, parent=None):
@@ -54,6 +57,7 @@ class HelpWindow(QDialog):
         l.addWidget(self.texto_help, 1, 2)
         l.addWidget(self.image_git_label, 1, 1)
         self.setLayout(l)
+
 
 class Updating(QRunnable):
     """Função para atualizar os dados do programa."""
@@ -90,8 +94,10 @@ class Window(QDialog):
 
         self.setFixedSize(_x, _y)
         self.figure = plt.figure()
+
         # transforma o gráfico em uma figure.
         self.canvas = FigureCanvas(self.figure)
+
         # abaixo, opção de zoom e salvar uma imagem do gráfico.
         self.toolbar = NavigationToolbar(self.canvas, self)
 
@@ -112,7 +118,17 @@ class Window(QDialog):
 
         self.atualizarButton = QPushButton(self)
         self.atualizarButton.clicked.connect(self.atualizar_dados)
+        self.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.atualizarButton.setText("Atualizar dados.")
+        self.atualizarButton.setStyleSheet('''
+        *{
+            background-color: #336B87;
+        }
+        *:hover{
+            background: '#BC006C';
+        }
+        '''
+                                           )
 
         self.chartUpdate = QPushButton(self)
         self.chartUpdate.setText("Gerar gráfico por dia (apenas mês atual).")
@@ -165,13 +181,15 @@ class Window(QDialog):
         self.mortes = QLabel("Número total de mortes: " + str(self.valor_cidade), self)
         self.mortes_dia = QLabel("Novas mortes: " + str(self.valor_dia), self)
         self.mortes_sp = QLabel("Total de óbitos no estado de São Paulo: " + str(self.valor_mortes_sp), self)
-        self.total_confirmados = QLabel("Total de casos confirmados no estado de São Paulo: " + str(self.valor_total_confirmados), self)
+        self.total_confirmados = QLabel(
+            "Total de casos confirmados no estado de São Paulo: " + str(self.valor_total_confirmados), self)
 
         """Taxa de letalidade"""
         valor_letalidade = ((tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[
-            tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano)].sum()) * 100) / \
+                                 tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano)].sum()) * 100) / \
                            (tracker.df['confirmados'].loc[tracker.df['cidade'] == self.cidade].loc[tracker.df['tipo'] ==
-                           'city'].loc[tracker.df['ano'] == int(self.ano)].sum())
+                                                                                                   'city'].loc[
+                                tracker.df['ano'] == int(self.ano)].sum())
         self.valor_taxa_letalidade = (f'{valor_letalidade:.2f}')
         self.letalidade = QLabel(f"Letalidade: {str(self.valor_taxa_letalidade)}%", self)
 
@@ -206,7 +224,7 @@ class Window(QDialog):
         self.setLayout(layout)
 
     def item_usuario(self):
-        
+
         self.cidade_selected = self.lista.currentText()
         print(self.cidade_selected)
         self.ano_selected = self.lista_ano.currentText()
@@ -215,9 +233,11 @@ class Window(QDialog):
             tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum()
 
         valor_letalidade = ((tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
-            tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum()) * 100) / \
-            (tracker.df['confirmados'].loc[tracker.df['cidade'] == self.cidade_selected].loc[tracker.df['tipo'] ==
-            'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum())
+                                 tracker.df['tipo'] == 'city'].loc[
+                                 tracker.df['ano'] == int(self.ano_selected)].sum()) * 100) / \
+                           (tracker.df['confirmados'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
+                                tracker.df['tipo'] ==
+                                'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum())
         self.valor_taxa_letalidade = (f'{valor_letalidade:.2f}')
 
         # Realiza a filtragem de acordo com a cidade selecionada.
