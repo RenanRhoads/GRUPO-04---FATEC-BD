@@ -145,7 +145,7 @@ class Window(QDialog):
             self.lista_meses.addItem(tracker.lista_meses[self.a])
             self.a += 1
 
-        self.lista_meses.move(1165, 45)
+        self.lista_meses.move(1163, 38)
         self.lista_meses.resize(104, 22)
         self.lista_meses.setEditable(False)
 
