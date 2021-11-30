@@ -1,8 +1,6 @@
 import locale
 import pandas as pd
 import os
-import seaborn as sns
-import matplotlib.pyplot as plt
 from datetime import date, timedelta
 
 # 21/09/2021 - Matheus Lourenço - Adicionado gráfico de top 10 cidades mortes por Covid.
@@ -49,8 +47,9 @@ class tracker:
     df['ano'] = pd.DatetimeIndex(df['data']).year  # cria uma coluna de ano
     df['mes'] = pd.DatetimeIndex(df['data']).month  # cria uma coluna de mes
     df['mes_nome'] = df['data'].dt.strftime('%B')  # transforma o numero da coluna 'mes' para nome do mes
-    df['mes/ano'] = df['mes_nome'].astype(str) + "-" + df['ano'].astype(str)  # concatena mes e ano
+    df['mes_ano'] = df['mes_nome'].astype(str) + "-" + df['ano'].astype(str)  # concatena mes e ano
     df['dia'] = pd.DatetimeIndex(df['data']).day
+    df['chave'] = df['cidade'] + df['mes_nome'] + df['ano'].astype(str)
 
     '''Variáveis'''
 
@@ -77,5 +76,9 @@ class tracker:
         .iloc[:10]
 
     # Ordena as cidades de forma decrescente e mostra as 10 cidades com maior numero de morte
+
+    lista_mes = df['mes_ano'].drop_duplicates().tolist()
+
+    print(df)
 
     ####################################################################################################################

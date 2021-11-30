@@ -145,7 +145,7 @@ class Window(QDialog):
             self.lista_meses.addItem(tracker.lista_meses[self.a])
             self.a += 1
 
-        self.lista_meses.move(1163, 38)
+        self.lista_meses.move(1163, 34)
         self.lista_meses.resize(104, 22)
         self.lista_meses.setEditable(False)
 
@@ -158,7 +158,7 @@ class Window(QDialog):
 
         """Filtro se altera com base na cidade que o usuário seleciona"""
         self.valor_dia = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade].loc[
-            tracker.df['tipo'] == 'city'].loc[tracker.df['data'] == self.data_string].sum()
+            tracker.df['tipo'] == 'city'].iloc[-1].sum()
 
         """Calcula a data atual - 1 para saber a quantidade de novas mortes """
 
@@ -230,22 +230,43 @@ class Window(QDialog):
         self.ano_selected = self.lista_ano.currentText()
         self.mes_selected = self.lista_meses.currentText()
 
-        self.valor_cidade_selected = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
-            tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum()
+        self.concat = self.cidade_selected + self.mes_selected + str(self.ano_selected)
 
-        valor_letalidade = ((tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
-                                 tracker.df['tipo'] == 'city'].loc[
-                                 tracker.df['ano'] == int(self.ano_selected)].sum()) * 100) / \
-                           (tracker.df['confirmados'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
-                                tracker.df['tipo'] ==
-                                'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum())
-        self.valor_taxa_letalidade = f'{valor_letalidade:.2f}'
+        print(self.concat)
 
-        # Realiza a filtragem de acordo com a cidade selecionada.
-        self.letalidade.setText(f"Letalidade: {str(self.valor_taxa_letalidade)}%")
+        if self.mes_selected == 'Todos':
 
-        self.mortes.setText("Número total de Mortes: " + str(int(self.valor_cidade_selected)))
-        """Altera o valor dos números de mortes que podemos ver."""
+            self.valor_cidade_selected = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
+                tracker.df['tipo'] == 'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum()
+
+            valor_letalidade = ((tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
+                                     tracker.df['tipo'] == 'city'].loc[
+                                     tracker.df['ano'] == int(self.ano_selected)].sum()) * 100) / \
+                               (tracker.df['confirmados'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
+                                    tracker.df['tipo'] ==
+                                    'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum())
+            self.valor_taxa_letalidade = f'{valor_letalidade:.2f}'
+
+            # Realiza a filtragem de acordo com a cidade selecionada.
+            self.letalidade.setText(f"Letalidade: {str(self.valor_taxa_letalidade)}%")
+
+            self.mortes.setText("Número total de Mortes: " + str(int(self.valor_cidade_selected)))
+            """Altera o valor dos números de mortes que podemos ver."""
+        else:
+
+            self.valor_cidade_selected = tracker.df['mortes'].loc[tracker.df['chave'] == self.concat].sum()
+
+            valor_letalidade = ((tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
+                                     tracker.df['tipo'] == 'city'].loc[
+                                     tracker.df['ano'] == int(self.ano_selected)].sum()) * 100) / \
+                               (tracker.df['confirmados'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
+                                    tracker.df['tipo'] ==
+                                    'city'].loc[tracker.df['ano'] == int(self.ano_selected)].sum())
+            self.valor_taxa_letalidade = f'{valor_letalidade:.2f}'
+
+            # Realiza a filtragem de acordo com a cidade selecionada.
+            self.letalidade.setText(f"Letalidade: {str(self.valor_taxa_letalidade)}%")
+            self.mortes.setText("Número total de Mortes: " + str(int(self.valor_cidade_selected)))
 
         plt.clf()  # vai limpar o gráfico anterior para que não gere um em cima do outro.
 
@@ -255,6 +276,8 @@ class Window(QDialog):
         ano_sel = user_select_year
         user_select_month = self.mes_selected
         mes_sel = user_select_month
+
+        concat = city_sel + mes_sel + str(ano_sel)
 
         if mes_sel == "Todos":
             cidade_sel = tracker.df[tracker.df.cidade == str(city_sel)].loc[tracker.df.ano == int(ano_sel)]
@@ -274,23 +297,40 @@ class Window(QDialog):
             ax.plot()
             self.canvas.draw()
         elif mes_sel != "Todos":
-            cidade_sel = tracker.df.loc[(tracker.df.cidade == city_sel) & (tracker.df.ano == int(ano_sel)) & (
-                        tracker.df.mes_nome == str(mes_sel))]
-            # Gráfico por mês da cidade selecionada
-            sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
-            ax = self.figure.add_subplot(111)
-            sns.set_color_codes("pastel")
-            sns.barplot(x="dia", y="mortes", data=cidade_sel,
-                        color="b", ci=None, estimator=sum)
-            # Configurando título e rótulos dos eixos.
-            plt.title('Mortes em ' + str(mes_sel) + " de " + str(ano_sel), fontsize=9)
-            plt.xlabel('Mês', fontsize=9)
-            plt.ylabel('Mortes', fontsize=9)
-            for container in ax.containers:
-                ax.bar_label(container)
-            ax.plot()
-            self.canvas.draw()
 
+            if concat not in tracker.df.values:
+
+                cidade_sel = tracker.df.loc[tracker.df.chave == 'São Paulonovembro2021']
+                # Gráfico por mês da cidade selecionada
+                sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
+                ax = self.figure.add_subplot(111)
+                sns.set_color_codes("pastel")
+                sns.barplot(x="dia", y="mortes", data=cidade_sel,
+                            color="b", ci=None, estimator=sum)
+                # Configurando título e rótulos dos eixos.
+                plt.title('Operação impossível, talvez os dados selecionados não exista no Dataset fornecido pela Brasil.io', fontsize=9)
+                plt.xlabel('Mês', fontsize=9)
+                plt.ylabel('Mortes', fontsize=9)
+                for container in ax.containers:
+                    ax.bar_label(container)
+                ax.plot()
+                self.canvas.draw()
+            else:
+                cidade_sel = tracker.df.loc[tracker.df.chave == concat]
+                # Gráfico por mês da cidade selecionada
+                sns.set_theme(style="darkgrid")  # faz o gráfico aparecer.
+                ax = self.figure.add_subplot(111)
+                sns.set_color_codes("pastel")
+                sns.barplot(x="dia", y="mortes", data=cidade_sel,
+                            color="b", ci=None, estimator=sum)
+                # Configurando título e rótulos dos eixos.
+                plt.title('Mortes em ' + str(mes_sel) + " de " + str(ano_sel), fontsize=9)
+                plt.xlabel('Mês', fontsize=9)
+                plt.ylabel('Mortes', fontsize=9)
+                for container in ax.containers:
+                    ax.bar_label(container)
+                ax.plot()
+                self.canvas.draw()
     def atualizar_dados(self):
         formato = "%(asctime)s: %(message)s"
         logging.basicConfig(format=formato, level=logging.INFO, datefmt="%H:%M:%S")
