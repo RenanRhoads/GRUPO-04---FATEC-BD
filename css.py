@@ -3,6 +3,10 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 
 
 class css:
+    wallpaper = """
+                    font: 75 10pt "Microsoft YaHei UI";
+                    background-image: url(r'\assets\icons\back.png);
+                    """
     default = """
                 color: #FFFFFF;
                 font: 75 10pt "Microsoft YaHei UI";

@@ -47,10 +47,10 @@ class tracker:
     df = df.drop_duplicates()  # retira valores duplicados.
     df['data'] = pd.to_datetime(df['data'])  # cria uma coluna de data
     df['ano'] = pd.DatetimeIndex(df['data']).year  # cria uma coluna de ano
-    #df['dia'] = pd.DatetimeIndex[df['data']).day
     df['mes'] = pd.DatetimeIndex(df['data']).month  # cria uma coluna de mes
     df['mes_nome'] = df['data'].dt.strftime('%B')  # transforma o numero da coluna 'mes' para nome do mes
     df['mes/ano'] = df['mes_nome'].astype(str) + "-" + df['ano'].astype(str)  # concatena mes e ano
+    df['dia'] = pd.DatetimeIndex(df['data']).day
 
     '''Variáveis'''
 
@@ -62,22 +62,20 @@ class tracker:
 
     novos_casos = df['novos casos'].loc[df['estado'] == 'SP'].loc[df['data'] == str(dia_1)].sum()  # Soma os casos novos
 
-    total_mortes_dia = df['mortes'].loc[df['data'] == '2020-09-18'].sum()
+    total_mortes_dia = df['mortes'].loc[df['mes_nome'] == 'novembro'].sum()
 
     lista_cidades = df['cidade'].loc[df['estado'] == 'SP'].loc[df['cidade'] != ''].drop_duplicates().sort_values() \
         .tolist()
 
-    total_confirmados = df['confirmados'].loc[df['data'] == '2020-09-18'].sum()
-
-    print(total_confirmados)
-
     lista_ano = ['2020', '2021']
+
+    lista_meses = ['Todos', 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'setembro', 'outubro', 'novembro', 'dezembro']
 
     """Transforma os valores em lista, e coloca em ordem alfabética."""
 
     total_mortes_cidade = df[['cidade', 'mortes']].groupby('cidade').sum().sort_values(by='mortes', ascending=False) \
         .iloc[:10]
+
     # Ordena as cidades de forma decrescente e mostra as 10 cidades com maior numero de morte
-    # print(total_mortes_cidade)
 
     ####################################################################################################################
