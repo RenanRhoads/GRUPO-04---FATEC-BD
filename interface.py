@@ -109,7 +109,6 @@ class Window(QDialog):
 
         self.atualizarButton = QPushButton(self)
         self.atualizarButton.clicked.connect(self.atualizar_dados)
-        self.setCursor(QCursor(QtCore.Qt.PointingHandCursor))
         self.atualizarButton.setText("Atualizar dados.")
         self.grafButton = QPushButton(self)
         self.grafButton.clicked.connect(self.showGraf)
