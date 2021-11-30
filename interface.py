@@ -2,7 +2,7 @@ import os
 from PyQt5 import QtGui, QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-from PyQt5.QtCore import QRunnable
+from PyQt5.QtCore import QRunnable, Qt
 from matplotlib import pyplot as plt
 from covid import tracker
 from PyQt5.QtWidgets import *
@@ -25,6 +25,7 @@ root = tk.Tk()
 
 _x = 1280  # root.winfo_screenwidth()
 _y = 720  # root.winfo_screenheight()
+
 
 class HelpWindow(QDialog):
     def __init__(self, parent=None):
@@ -231,8 +232,6 @@ class Window(QDialog):
 
         self.concat = self.cidade_selected + self.mes_selected + str(self.ano_selected)
 
-        print(self.concat)
-
         if self.mes_selected == 'Todos':
 
             self.valor_cidade_selected = tracker.df['mortes'].loc[tracker.df['cidade'] == self.cidade_selected].loc[
@@ -307,7 +306,9 @@ class Window(QDialog):
                 sns.barplot(x="dia", y="mortes", data=cidade_sel,
                             color="b", ci=None, estimator=sum)
                 # Configurando título e rótulos dos eixos.
-                plt.title('Operação impossível, talvez os dados selecionados não exista no Dataset fornecido pela Brasil.io', fontsize=9)
+                plt.title(
+                    'Operação impossível, talvez os dados selecionados não exista no Dataset fornecido pela Brasil.io',
+                    fontsize=9)
                 plt.xlabel('Mês', fontsize=9)
                 plt.ylabel('Mortes', fontsize=9)
                 for container in ax.containers:
@@ -330,6 +331,7 @@ class Window(QDialog):
                     ax.bar_label(container)
                 ax.plot()
                 self.canvas.draw()
+
     def atualizar_dados(self):
         formato = "%(asctime)s: %(message)s"
         logging.basicConfig(format=formato, level=logging.INFO, datefmt="%H:%M:%S")
@@ -371,5 +373,25 @@ if __name__ == '__main__':
     main.setWindowTitle('CovidTracker')
     main.show()
     app.setStyle('Fusion')
+
+    dark_palette = QPalette()
+
+    dark_palette.setColor(QPalette.Window, QColor(53, 53, 53))
+    dark_palette.setColor(QPalette.WindowText, Qt.white)
+    dark_palette.setColor(QPalette.Base, QColor(25, 25, 25))
+    dark_palette.setColor(QPalette.AlternateBase, QColor(53, 53, 53))
+    dark_palette.setColor(QPalette.ToolTipBase, Qt.white)
+    dark_palette.setColor(QPalette.ToolTipText, Qt.white)
+    dark_palette.setColor(QPalette.Text, Qt.white)
+    dark_palette.setColor(QPalette.Button, QColor(53, 53, 53))
+    dark_palette.setColor(QPalette.ButtonText, Qt.white)
+    dark_palette.setColor(QPalette.BrightText, Qt.red)
+    dark_palette.setColor(QPalette.Link, QColor(42, 130, 218))
+    dark_palette.setColor(QPalette.Highlight, QColor(42, 130, 218))
+    dark_palette.setColor(QPalette.HighlightedText, Qt.black)
+
+    app.setPalette(dark_palette)
+
+    app.setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }")
 
     sys.exit(app.exec_())
