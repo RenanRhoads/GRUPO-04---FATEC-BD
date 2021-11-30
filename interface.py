@@ -325,7 +325,7 @@ class Window(QDialog):
                             color="b", ci=None, estimator=sum)
                 # Configurando título e rótulos dos eixos.
                 plt.title('Mortes em ' + str(mes_sel) + " de " + str(ano_sel), fontsize=9)
-                plt.xlabel('Mês', fontsize=9)
+                plt.xlabel(f'Mortes por dia em {mes_sel}/{ano_sel}', fontsize=9)
                 plt.ylabel('Mortes', fontsize=9)
                 for container in ax.containers:
                     ax.bar_label(container)
