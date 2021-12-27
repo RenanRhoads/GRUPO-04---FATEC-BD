@@ -389,7 +389,7 @@ if __name__ == '__main__':
     dark_palette.setColor(QPalette.Link, QColor(42, 130, 218))
     dark_palette.setColor(QPalette.Highlight, QColor(42, 130, 218))
     dark_palette.setColor(QPalette.HighlightedText, Qt.black)
-/
+
     app.setPalette(dark_palette)
 
     app.setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }")
